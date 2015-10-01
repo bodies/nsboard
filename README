@@ -1,0 +1,5 @@
+필요한 pypi 패키지
+
+bottle
+beaker
+mysql-connector-python

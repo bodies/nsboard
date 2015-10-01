@@ -1,0 +1,5 @@
+# Sublime Text
+nsboard.sublime-*
+
+# Python
+__pycache__/

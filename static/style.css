@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+* { margin: 0; padding: 0;}
+
+body {
+    font-size: 13px;
+    font-family: NanumGothic, sans-serif;
+    padding-top: 60px;  /* for navbar-fixed-top */
+}
+
+
+/* ----- LOGIN FORM ----- */
+
+#login {
+    max-width: 380px;
+    margin: 140px auto;
+}
+
+#form-login {
+}
+
+p.text {
+	line-height:1.8em;
+}
+
+
