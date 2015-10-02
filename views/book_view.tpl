@@ -8,7 +8,7 @@
           <tr>
             <th>작품 구분</th>
             <td>{{ '장편' if info['series'] else '단편' }}</td>
-            <th>공개/비공개</th>
+            <th>공개</th>
             <td>
             % if info['public']:
             공개
@@ -18,16 +18,22 @@
             </td>
           </tr>
           <tr>
-            <th>연재 횟수</th>
+            <th>연재</th>
             <td>{{ info['story_count'] }}</td>
             <th>최근 연재일</th>
-            <td>{{ info['update_date'] }}</td>
+            <td>
+              <span title="{{ info['update_date'] }}">{{ info['update_date'].strftime('%Y/%m/%d') }}</span>
+            </td>
           </tr>
           <tr>
             <th>등록일</th>
-            <td>{{ info['pub_date'] }}</td>
+            <td>
+              <span title="{{ info['pub_date'] }}">{{ info['pub_date'].strftime('%Y/%m/%d') }}</span>
+            </td>
             <th>변경일</th>
-            <td>{{ info['mod_date'] }}</td>
+            <td>
+              <span title="{{ info['mod_date'] }}">{{ info['mod_date'].strftime('%Y/%m/%d') }}</span>
+            </td>
           </tr>
           <tr>
             <th>키워드</th>
@@ -45,25 +51,19 @@
         	<tr>
         		<th>#</th>
         		<th>제목</th>
-        		<th>조회수</th>
-        		<th>추천수</th>
-						<th>등록일</th>
+				    <th>등록일</th>
         	</tr>
         	% for r in list:
         	<tr>
         		<td>{{ r['queue_num'] }}</td>
         		<td><a href="/s/{{ r['num'] }}">{{ r['title'] }}</a></td>
-        		<td>{{ r['view_count'] }}</td>
-        		<td>{{ r['like_count'] }}</td>
-        		<td>{{ r['mod_date'] }}</td>
+        		<td>
+              <span title="{{ r['mod_date'] }}">{{ r['mod_date'].strftime('%Y/%m/%d') }}</span>
+            </td>
         	</tr>
         	% end
         </table>
         % end
-
-
-
-
         % end
 			</div>
 
