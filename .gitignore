@@ -3,3 +3,4 @@ nsboard.sublime-*
 
 # Python
 __pycache__/
+config_db.py
