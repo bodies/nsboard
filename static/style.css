@@ -3,16 +3,20 @@
 * { margin: 0; padding: 0;}
 
 body {
-    font-size: 13px;
+    font-size: 14px;
     font-family: NanumGothic, sans-serif;
 }
 
 .container {
-	width:760px;
+	max-width:760px;
 }
 
+p.text {
+	font-size:1.1em;
+	line-height:1.8em;
 
-/* ----- LOGIN FORM ----- */
+
+/* ----- LOGIN ----- */
 
 #login {
     max-width: 380px;
@@ -22,8 +26,6 @@ body {
 #form-login {
 }
 
-p.text {
-	line-height:1.8em;
 }
 
 
@@ -56,5 +58,14 @@ p.text {
 
 /* ----- USER - STORY-VIEW ----- */
 .story-view { }
+.story-view h2 { font-weight: 600; margin-bottom:30px; text-align: center;}
+.story-view h3 {
+	font-weight: 700;
+	letter-spacing:-1px;
+	margin:20px 0 30px 0;
+	padding:0 0 20px 0;
+	border-bottom:1px solid #e7e7e7;
+}
 .story-view p.keywords { margin: 30px 0; }
+.story-view .buttons { text-align:center;}
 .story-view .story-nav { margin:20px 5px; }

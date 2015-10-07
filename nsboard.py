@@ -42,7 +42,7 @@ def show_story(story_num):
         lib = library.Library()
         data = lib.story(story_num)
         data['story'] = data['story'].replace('\n', '<br />')
-        data['keywords'] = _keyword_links(data['keywords'])
+        # data['keywords'] = _keyword_links(data['keywords'])
         return template('story_view', title='', data=data)
     except Exception as e:
         return template('popup', msg=str(e))

@@ -1,4 +1,4 @@
-% include('header.tpl')
+% include('admin_header.tpl')
 % include('menu_admin.tpl')
 			<div class="col-md-10">
 				<h3><a href="/a/b/{{ data['book_num'] }}">{{ data['book_title'] }}</a></h3>

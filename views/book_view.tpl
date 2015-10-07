@@ -5,8 +5,12 @@
 				<p>작품 정보가 존재하지 않습니다.</p>
 				% else:
         <div>
-  				<p>{{ info['intro'] if info['intro'] else '...' }}</p>
-          <p>키워드: {{ !', '.join(info['keywords']) }}</p>
+          <div class="panel panel-default">
+            <div class="panel-body">
+    				{{ info['intro'] if info['intro'] else '...' }}
+            </div>
+          </div>
+          <p>키워드 |  {{ !', '.join(info['keywords']) }}</p>
         </div>
         <div class="buttons">
           <a href="" class="btn btn-success btn-sm" role="button">
@@ -41,5 +45,4 @@
         % end
         % end
 			</div>
-
 % include('footer.tpl')

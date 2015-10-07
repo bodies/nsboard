@@ -1,5 +1,7 @@
-필요한 pypi 패키지
+* 필요한 pypi 패키지
+- bottle
+- beaker
+- mysql-connector-python
 
-bottle
-beaker
-mysql-connector-python
+* Git에 제외된 중요 파일
+ - config_db.py (DB 접속 정보. 서버 환경에 맞게 따로 작성할 것.)
