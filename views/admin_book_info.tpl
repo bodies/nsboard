@@ -1,4 +1,4 @@
-% include('header.tpl')
+% include('admin_header.tpl')
 % include('menu_admin.tpl')
       <div class="col-md-10">
         <div class="panel panel-default">
@@ -24,15 +24,31 @@
                 </tr>
                 <tr>
                   <th>연재 횟수</th>
-                  <td>{{ data['story_count'] }}</td>
-                  <th>최근 연재일</th>
-                  <td>{{ data['update_date'] }}</td>
+                  <td>{{ data['story_count'] }} 편</td>
+                  <th>완결</th>
+                  <td>
+                  % if data['complete']:
+                  완결
+                  % else:
+                  미완결
+                  % end
+                  </td>
                 </tr>
                 <tr>
                   <th>등록일</th>
-                  <td>{{ data['pub_date'] }}</td>
-                  <th>변경일</th>
-                  <td>{{ data['mod_date'] }}</td>
+                  <td>
+                    <span title="{{ data['pub_date'] }}">{{ data['pub_date'].strftime('%Y/%m/%d') }}</span>
+                  </td>
+                  <th>최근 연재일</th>
+                  <td>
+                    <span title="{{ data['update_date'] }}">{{ data['update_date'].strftime('%Y/%m/%d') }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>조회수</th>
+                  <td>{{ data['view_count'] }} 회</td>
+                  <th>평균 추천수</th>
+                  <td>약 {{ data['like_count'] }}</td>
                 </tr>
                 <tr>
                   <th>키워드</th>

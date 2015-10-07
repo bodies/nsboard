@@ -27,6 +27,7 @@ def main():
 
 @app.route('/b/<book_num:int>')
 def show_book(book_num):
+    # 책 정보 & 연재글 목록 보기
     lib = library.Library()
     info = lib.book_info(book_num)
     info['keywords'] = _keyword_links(info['keywords'])

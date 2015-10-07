@@ -50,7 +50,7 @@ class Library:
         except:
             raise
 
-    def new_book(self, title, series, public, keywords, intro):
+    def new_book(self, title, series, public, complete, keywords, intro):
         """
         series, public = 0 / 1
         keywords = 리스트
@@ -66,9 +66,9 @@ class Library:
         try:
             # 책 등록 & 책 번호
             self.cur.execute(
-                'INSERT INTO books (title, intro, series, public, pub_date,\
-                mod_date) VALUES (%s, %s, %s, %s, NOW(), NOW())',
-                (title, intro, series, public)
+                'INSERT INTO books (title, intro, series, public, complete,\
+                pub_date, mod_date) VALUES (%s, %s, %s, %s, %s, NOW(), NOW())',
+                (title, intro, series, complete, public)
             )
             book_num = self.cur.lastrowid
 
@@ -81,7 +81,7 @@ class Library:
         except:
             raise
 
-    def modify_book(self, num, title, series, public, keywords, intro):
+    def modify_book(self, num, title, series, public, complete, keywords, intro):
         """ TODO: keyword_links 테이블에서 사용하지 않는 키워드를
              keywords 테이블에서 삭제하는 "청소" 메서드 만들 것!
         """
@@ -89,9 +89,9 @@ class Library:
             # ???: UPDATE를 해도 'ON UPDATE CURRENT_TIMESTAMP'가 작동을 안한다.
             # 어쩌면 autocommit과 연관이 있을 지도.. 일단 직접 NOW()로 현재 시각을 넣자
             self.cur.execute(
-                'UPDATE books SET title=%s, series=%s, public=%s, intro=%s,\
-                mod_date=NOW() WHERE num=%s LIMIT 1',
-                (title, series, public, intro, num))
+                'UPDATE books SET title=%s, series=%s, public=%s, complete=%s,\
+                intro=%s, mod_date=NOW() WHERE num=%s LIMIT 1',
+                (title, series, public, complete, intro, num))
 
             # keyword_links 갱신: 옛 키워드 제거 & 새 키워드 등록
             old_keywords = self.book_keywords(num)
@@ -139,31 +139,35 @@ class Library:
         except:
             raise
 
-    def story_list(self, book_num, page=1):
+    def story_list(self, book_num, page=1, order='DESC'):
         # TODO: 페이지를 구현할 것!
         try:
             start = (page - 1) * 20
             end = page * 20
 
-            self.cur.execute(
-                'SELECT num, book_num, queue_num, title, public, view_count,\
+            # DESC를 excute()에서 %s로 넘기면, 따옴표가 붙어서 에러 발생함.
+            query = 'SELECT num, book_num, queue_num, title, public, view_count,\
                 like_count, pub_date, mod_date FROM stories WHERE book_num=%s\
-                LIMIT %s, %s', (book_num, start, end))
+                ORDER BY queue_num {} LIMIT %s, %s'.format(order)
+            print('QUERY:', query)
+
+            self.cur.execute(query, (book_num, start, end))
 
             data = self.cur.fetchall()
             result = []
             for n in data:
                 result.append(dict(zip(self.cur.column_names, n)))
             return result
-        except:
-            raise
+        except Exception as e:
+            raise e
 
     def book_list(self):
         # 책 정보를 사전 형태 반환
-        # 번호, 제목, 공개 여부, 최초 게시일, 최근 게시일, 연재 횟수
+        # 번호, 제목, 공개 여부, 완결 여부, 최초 게시일, 최근 게시일, 연재 횟수
         try:
             self.cur.execute(
-                'SELECT num, title, public, pub_date, mod_date, update_date,\
+                'SELECT num, title, public, complete, pub_date, mod_date,\
+                update_date,\
                 (SELECT count(s.num) from stories AS s WHERE s.book_num=b.num)\
                 as story_count FROM books AS b ORDER BY num DESC')
             data = self.cur.fetchall()
@@ -183,16 +187,27 @@ class Library:
     def book_info(self, book_num):
         try:
             self.cur.execute(
-                'SELECT num, title, series, public, intro, pub_date, mod_date,\
-                update_date, (SELECT count(s.num) FROM stories AS s\
-                WHERE s.book_num=b.num) as story_count FROM books AS b\
-                WHERE num=%s LIMIT 1', (book_num,))
+                'SELECT b.num, b.title, b.series, b.public, b.complete,\
+                b.intro, b.pub_date, b.mod_date, b.update_date,\
+                COUNT(s.num) AS story_count, SUM(view_count) AS view_count,\
+                ROUND(AVG(like_count)) AS like_count\
+                FROM books AS b, stories AS s\
+                WHERE b.num=%s AND b.num=s.book_num LIMIT 1', (book_num,)
+            )
+            # 'SELECT num, title, series, public, complete, intro, pub_date,\
+            # mod_date, update_date, (SELECT COUNT(s.num) FROM stories AS s\
+            # WHERE s.book_num=b.num) AS story_count, \
+            # (SELECT SUM(s.view_count) FROM stories AS s\
+            # WHERE s.book_num=b.num) AS view_count FROM books AS b\
+            # WHERE num=%s LIMIT 1', (book_num,))
+
             result = self.cur.fetchone()
 
             if not result:
                 return False
 
             data = dict(zip(self.cur.column_names, result))
+            print(data)
 
             data['keywords'] = self.book_keywords(book_num)
 

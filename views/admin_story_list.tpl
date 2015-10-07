@@ -1,4 +1,4 @@
-% include('header.tpl')
+% include('admin_header.tpl')
 % include('menu_admin.tpl')
 <script>
 $(document).ready(function() {
@@ -22,9 +22,10 @@ $(document).ready(function() {
 					% if not data:
 						<p>등록된 글이 없습니다.</p>
 					% else:
-						<table class="table table-condensed">
+						<table class="table table-list">
+							<thead>
 							<tr>
-								<th>글번호</th>
+								<th>#</th>
 								<th>회차</th>
 								<th class="col-sm-4">회차 제목</th>
 								<th>공개</th>
@@ -34,11 +35,13 @@ $(document).ready(function() {
 								<th>수정일</th>
 								<th>-</th>
 							</tr>
+							</thead>
+							<tbody>
 							% for r in data:
 							<tr>
 								<td>{{ r['num'] }}</td>
 								<td>{{ r['queue_num'] }}</td>
-								<td><a href="/a/s/{{ r['num'] }}">{{ r['title'] }}</a></td>
+								<td class="table-title"><a href="/a/s/{{ r['num'] }}">{{ r['title'] }}</a></td>
 								<td>{{ '공개' if r['public'] else '비공개' }}</td>
 								<td>{{ r['view_count'] }}</td>
 								<td>{{ r['like_count'] }}</td>
@@ -54,6 +57,7 @@ $(document).ready(function() {
 								</td>
 							</tr>
 							% end
+							</tbody>
 						</table>
 					% end
 						<div>

@@ -1,4 +1,4 @@
-% include('header.tpl')
+% include('admin_header.tpl')
 % include('menu_admin.tpl')
 			<div class="col-md-8">
 				<div class="panel panel-default">

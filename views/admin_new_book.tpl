@@ -23,6 +23,15 @@
               % radio_p = ''
               % radio_np = 'checked'
             % end
+            % if defined('data') and data['complete']:
+              % print(data['complete'])
+              % radio_c = 'checked'
+              % radio_nc = ''
+            % else:
+              % radio_c = ''
+              % radio_nc = 'checked'
+            % end
+
           </h4>
         </div>
         <div class="panel-body">
@@ -60,6 +69,16 @@
                 <input type="radio" name="is_public" value="False" {{ radio_np }}>비공개
               </label>
             </div>
+            % if defined('mod'):
+            <div class="form-group form-group-sm">
+              <label class="radio-inline">
+                <input type="radio" name="is_complete" value="True" {{ radio_c }}>완결
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="is_complete" value="False" {{ radio_nc }}>미완결
+              </label>
+            </div>
+            % end
 
             <div class="form-group form-group-sm">
               <button type="submit" class="btn btn-sm btn-primary join-btn">작품 등록</button>

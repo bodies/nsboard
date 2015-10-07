@@ -98,6 +98,7 @@ def save_new_book(book_num=None):
         title = remove_tags(request.forms.getunicode('title'))
         series_raw = request.forms.get('is_series').strip()
         public_raw = request.forms.get('is_public').strip()
+        complete_raw = request.forms.get('is_complete', default='').strip()
         keywords_raw = clean(request.forms.getunicode('keywords'))
         intro = remove_tags(request.forms.getunicode('intro'))
 
@@ -107,17 +108,18 @@ def save_new_book(book_num=None):
         # 데이터 정리
         series = 1 if series_raw == 'True' else 0
         public = 1 if public_raw == 'True' else 0
+        complete = 1 if complete_raw == 'True' else 0
         keywords = [tmp.replace(' ', '') for tmp in keywords_raw.split(',')]
 
         lib = library.Library()
 
         if not book_num:
-            book_num = lib.new_book(title, series, public, keywords, intro)
+            book_num = lib.new_book(title, series, public, complete, keywords, intro)
             if not book_num:
                 raise Exception('새 작품을 등록할 수 없습니다. 잠시 후 다시 시도해주세요.')
             msg = '<{}>이 새 작품으로 등록되었습니다.'.format(title)
         else:
-            lib.modify_book(book_num, title, series, public, keywords, intro)
+            lib.modify_book(book_num, title, series, public, complete, keywords, intro)
             msg = '<{}>의 작품 정보를 수정했습니다.'.format(title)
 
         return template('popup', msg=msg, dest='/a/b/{}'.format(book_num))

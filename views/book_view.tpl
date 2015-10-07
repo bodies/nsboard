@@ -1,68 +1,43 @@
 % include('header.tpl')
-			<div>
+			<div class="book-view">
 				<h3>{{ info['title'] }}</h3>
 				% if not info:
 				<p>작품 정보가 존재하지 않습니다.</p>
 				% else:
-				<table class="table table-condensed">
-          <tr>
-            <th>작품 구분</th>
-            <td>{{ '장편' if info['series'] else '단편' }}</td>
-            <th>공개</th>
-            <td>
-            % if info['public']:
-            공개
-            % else:
-            <span style="font-color:red">비공개</span>
-            % end
-            </td>
-          </tr>
-          <tr>
-            <th>연재</th>
-            <td>{{ info['story_count'] }}</td>
-            <th>최근 연재일</th>
-            <td>
-              <span title="{{ info['update_date'] }}">{{ info['update_date'].strftime('%Y/%m/%d') }}</span>
-            </td>
-          </tr>
-          <tr>
-            <th>등록일</th>
-            <td>
-              <span title="{{ info['pub_date'] }}">{{ info['pub_date'].strftime('%Y/%m/%d') }}</span>
-            </td>
-            <th>변경일</th>
-            <td>
-              <span title="{{ info['mod_date'] }}">{{ info['mod_date'].strftime('%Y/%m/%d') }}</span>
-            </td>
-          </tr>
-          <tr>
-            <th>키워드</th>
-            <td colspan="3">{{ !', '.join(info['keywords']) }}</td>
-          </tr>
-          <tr>
-            <th>작품 소개</th>
-            <td colspan="3">{{ info['intro'] if info['intro'] else '-' }}</td>
-          </tr>
-        </table>
+        <div>
+  				<p>{{ info['intro'] if info['intro'] else '...' }}</p>
+          <p>키워드: {{ !', '.join(info['keywords']) }}</p>
+        </div>
+        <div class="buttons">
+          <a href="" class="btn btn-success btn-sm" role="button">
+            <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;첫 화 보기
+          </a>
+          <a href="" class="btn btn-primary btn-sm" role="button">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;즐겨찾기
+          </a>
+        </div>
         % if not list:
         <p>등록된 글이 없습니다.</p>
         % else:
-        <table class="table table-condensed">
-        	<tr>
-        		<th>#</th>
-        		<th>제목</th>
-				    <th>등록일</th>
-        	</tr>
-        	% for r in list:
-        	<tr>
-        		<td>{{ r['queue_num'] }}</td>
-        		<td><a href="/s/{{ r['num'] }}">{{ r['title'] }}</a></td>
-        		<td>
+        <div class="story-list">
+          <div class="story-list-header clearfix">
+            <div class="pull-left">총 {{ info['story_count'] }} 편</div>
+            <div class="pull-right">
+            최근 등록일: <span title="{{ info['update_date'] }}">{{ info['update_date'].strftime('%Y/%m/%d') }}</span>
+            </div>
+          </div>
+
+          % for r in list:
+          <div class="story-list-item clearfix">
+            <div class="pull-left">
+              <a href="/s/{{ r['num'] }}">{{ r['title'] }}</a>
+            </div>
+            <div class="pull-right">
               <span title="{{ r['mod_date'] }}">{{ r['mod_date'].strftime('%Y/%m/%d') }}</span>
-            </td>
-        	</tr>
-        	% end
-        </table>
+            </div>
+          </div>  <!-- story-list-item -->
+          % end
+        </div>  <!-- story-list -->
         % end
         % end
 			</div>
