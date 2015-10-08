@@ -37,7 +37,10 @@ def show_book(book_num):
 
 @app.route('/s/<story_num:int>')
 def show_story(story_num):
-    # TODO: IP 확인하고, 조회수 올리기
+    """ TODO:
+        1. IP 확인하고, 조회수 올리기
+        2. '다음 화 - 이전 화' 구현 (data['next'], data['prev'])
+    """
     try:
         lib = library.Library()
         data = lib.story(story_num)

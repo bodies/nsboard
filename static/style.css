@@ -5,6 +5,7 @@
 body {
     font-size: 14px;
     font-family: NanumGothic, sans-serif;
+    padding-top: 70px;
 }
 
 .container {
@@ -61,11 +62,12 @@ p.text {
 .story-view h2 { font-weight: 600; margin-bottom:30px; text-align: center;}
 .story-view h3 {
 	font-weight: 700;
-	letter-spacing:-1px;
+	letter-spacing:-2px;
+	word-break: break-all;
 	margin:20px 0 30px 0;
 	padding:0 0 20px 0;
 	border-bottom:1px solid #e7e7e7;
 }
 .story-view p.keywords { margin: 30px 0; }
 .story-view .buttons { text-align:center;}
-.story-view .story-nav { margin:20px 5px; }
+.story-view .story-nav { margin:20px 0; }

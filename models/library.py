@@ -222,6 +222,11 @@ class Library:
             pass
 
     def story(self, story_num):
+        """ TODO:
+            * '이전 화 - 다음 화' 링크를 위해 앞뒤 화 존재 여부 확인
+            * 원하는 화가 없을 경우, 에러는 어떻게 처리??
+        """
+
         try:
             self.cur.execute(
                 'SELECT num, book_num, queue_num, title, public, view_count,\
@@ -230,6 +235,9 @@ class Library:
                 FROM stories AS s WHERE num=%s LIMIT 1', (story_num,))
             result = self.cur.fetchone()
 
+            if not result:
+                raise Exception('출력할 내용이 존재하지 않습니다.')
+
             data = dict(zip(self.cur.column_names, result))
 
             self.cur.execute(
@@ -237,12 +245,40 @@ class Library:
                 (story_num,))
             result = self.cur.fetchone()
 
+            if not result:
+                raise Exception('출력할 내용이 존재하지 않습니다.')
+
             # data['story'] = result[0].replace('\n', '<br />')
             # 줄바꿈 변화는 사용하는 쪽에서 직접 처리하는 편이 좋은 듯
             data['story'] = result[0]
             data['keywords'] = self.book_keywords(data['book_num'])
+            data['story_count'] = self.story_count(data['book_num'])
 
+            # 이전 화-다음 화 글 번호 지정
+            if data['queue_num'] > 1:
+                data['prev'] = self.story_num(data['book_num'], data['queue_num'] - 1)
+            else:
+                data['prev'] = None
+
+            if data['queue_num'] < data['story_count']:
+                data['next'] = self.story_num(data['book_num'], data['queue_num'] + 1)
+            else:
+                data['next'] = None
             return data
+        except:
+            raise
+
+    def story_num(self, book_num, queue_num):
+        # 작품 내 연재 번호로 글 번호 찾아서 반환
+        try:
+            self.cur.execute(
+                'SELECT num FROM stories WHERE book_num=%s AND queue_num=%s LIMIT 1',
+                (book_num, queue_num))
+            result = self.cur.fetchone()
+            if not result:
+                raise Exception('출력할 내용이 존재하지 않습니다.')
+            else:
+                return result[0]
         except:
             raise
 
@@ -287,6 +323,20 @@ class Library:
 
         except Exception as e:
             print(str(e))
+            raise
+
+    def story_count(self, book_num):
+        try:
+            self.cur.execute(
+                'SELECT count(*) FROM stories WHERE book_num=%s',
+                (book_num,))
+            result = self.cur.fetchone()
+
+            if not result:
+                return False
+            else:
+                return result[0]
+        except:
             raise
 
     def queue_dupe_check(self, book_num, queue_num):
