@@ -49,6 +49,10 @@ p.text {
 
 /* ----- USER - BOOK-VIEW ------ */
 .book-view { }
+.book-view h3 {
+	font-weight: 600;
+	letter-spacing:-1px;
+}
 .book-view .story-list { margin:40px 0 10px 0; }
 .book-view .story-list .story-list-header {
 	margin:10px 0 5px 0; padding: 2px;
@@ -68,6 +72,7 @@ p.text {
 	padding:0 0 20px 0;
 	border-bottom:1px solid #e7e7e7;
 }
+.story-view .resizer { margin-bottom:20px; padding-right:20px;}
 .story-view p.keywords { margin: 30px 0; }
 .story-view .buttons { text-align:center;}
 .story-view .story-nav { margin:20px 0; }

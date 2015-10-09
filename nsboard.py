@@ -58,6 +58,40 @@ def likes_story(story_num):
     pass
 
 
+@app.route('/new')
+def list_new():
+    # 새 글 목록
+    try:
+        page = request.query.p
+        page = int(page) if page else 1
+        lib = library.Library()
+        data = lib.list_new(page=page)
+        print(data)
+        return template('list_new', title='', data=data)
+    except Exception as e:
+        return template('popup', msg=str(e))
+
+
+@app.route('/hot')
+def list_hot():
+    # 인기 작품 목록
+    try:
+        data = ''
+        return
+        return template('list_hot', title='', data=data)
+    except Exception as e:
+        return template('popup', msg=str(e))
+
+
+@app.route('/keywords')
+def list_keywords():
+    # 키워드 목록
+    try:
+        pass
+    except Exception as e:
+        return template('popup', msg=str(e))
+
+
 @app.route('/k/<keyword>')
 def book_list_by_keyword(keyword):
     # 키워드별 작품 목록

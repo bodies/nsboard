@@ -25,9 +25,9 @@
         </div>
         <div>
           <ul class="nav navbar-nav">
-            <li><a href="#">최신글</a></li>
-            <li><a href="#">인기글</a></li>
-            <li><a href="#">키워드</a></li>
+            <li><a href="/new">최신글</a></li>
+            <li><a href="/hot">인기글</a></li>
+            <li><a href="/keywords">키워드</a></li>
             <li><a href="#">추천작</a></li>
           </ul>
         </div>
