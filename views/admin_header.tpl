@@ -18,19 +18,4 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand">HOME</a>
-        </div>
-        <div>
-          <ul class="nav navbar-nav">
-            <li><a href="/new">최신글</a></li>
-            <li><a href="/hot">인기글</a></li>
-            <li><a href="/keywords">키워드</a></li>
-            <li><a href="#">추천작</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="container">
+    <div class="container-fluid">

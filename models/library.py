@@ -143,7 +143,7 @@ class Library:
         # TODO: 페이지를 구현할 것!
         try:
             start = (page - 1) * 20
-            end = page * 20
+            end = start + 20
 
             # DESC를 excute()에서 %s로 넘기면, 따옴표가 붙어서 에러 발생함.
             query = 'SELECT num, book_num, queue_num, title, public, view_count,\
@@ -267,6 +267,21 @@ class Library:
             return data
         except:
             raise
+
+    def list_new(self, page=1):
+        # 새로 등록된 작품 목록
+        try:
+            start = (page - 1) * 20
+            end = start + 20
+            print('LIST_NEW')
+            self.cur.execute(
+                'SELECT num, title, pub_date FROM stories\
+                ORDER BY pub_date DESC LIMIT %s, %s', (start, end))
+            result = self.cur.fetchall()
+            return result
+
+        except Exception as e:
+            raise e
 
     def story_num(self, book_num, queue_num):
         # 작품 내 연재 번호로 글 번호 찾아서 반환
