@@ -6,6 +6,7 @@
 
     TODO:
         1. 예외 처리할 때, 에러 메시지 출력하는 것 지울 것.
+        2. 각 페이지 제목(title) 제대로 표시할 것. (현재는 대부분 공백)
 """
 
 from bottle import Bottle, redirect, request, run, static_file, template
