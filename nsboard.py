@@ -14,6 +14,11 @@ from models import library
 
 import admin
 
+from math import ceil
+
+# ----- GLOBALS ----- #
+PER_PAGE = 20
+
 # ----- ROUTING ----- #
 
 app = Bottle()
@@ -29,10 +34,12 @@ def main():
 @app.route('/b/<book_num:int>')
 def show_book(book_num):
     # 책 정보 & 연재글 목록 보기
+    this_page = request.query.p
+    this_page = int(this_page) if this_page else 1
     lib = library.Library()
     info = lib.book_info(book_num)
     info['keywords'] = _keyword_links(info['keywords'])
-    story_list = lib.story_list(book_num)
+    story_list = lib.story_list(book_num, this_page, PER_PAGE)
     return template('book_view', title='', info=info, list=story_list)
 
 
@@ -47,6 +54,7 @@ def show_story(story_num):
         data = lib.story(story_num)
         data['story'] = data['story'].replace('\n', '<br />')
         # data['keywords'] = _keyword_links(data['keywords'])
+        lib.add_view_count(story_num)
         return template('story_view', title='', data=data)
     except Exception as e:
         return template('popup', msg=str(e))
@@ -61,14 +69,22 @@ def likes_story(story_num):
 
 @app.route('/new')
 def list_new():
-    # 새 글 목록
+    """ 새 글 목록
+        TODO:
+        1. 페이지네이션 구현
+    """
     try:
-        page = request.query.p
-        page = int(page) if page else 1
+        this_page = request.query.p
+        this_page = int(this_page) if this_page else 1
+
         lib = library.Library()
-        data = lib.list_new(page=page)
-        print(data)
-        return template('list_new', title='', data=data)
+        data = lib.list_new(this_page, PER_PAGE)
+
+        # 페이지네이션
+        total = lib.story_count_all()
+        page = _pagination(this_page, total)
+
+        return template('list_new', title='', data=data, page=page)
     except Exception as e:
         return template('popup', msg=str(e))
 
@@ -97,7 +113,20 @@ def list_keywords():
 def book_list_by_keyword(keyword):
     # 키워드별 작품 목록
     # TODO: 일반 게시판 목록처럼 페이지 구분을 해야 함.
-    pass
+    try:
+        if not keyword:
+            redirect('/keywords')
+        this_page = request.query.p
+        this_page = int(this_page) if this_page else 1
+
+        lib = library.Library()
+        data = lib.book_list_keyword(keyword, this_page, PER_PAGE)
+        total = lib.book_count_keyword(keyword)
+        page = _pagination(this_page, total)
+
+        return template('list_keyword', title='', data=data, keyword=keyword, page=page)
+    except Exception as e:
+        return template('popup', msg=str(e))
 
 
 @app.route('/static/<filename>')
@@ -117,9 +146,29 @@ def _keyword_links(keywords):
     # 키워드 리스트를 받아, 링크 문자열 리스트를 만들어 반환
     result = []
     for kw in keywords:
-        txt = '<a href="/t/{0}">{0}</a>'.format(kw)
+        txt = '<a href="/k/{0}">{0}</a>'.format(kw)
         result.append(txt)
     return result
+
+
+def _pagination(this_page, total):
+    # 페이지내이션 데이터를 만들어서, 사전 형태로 반환
+    PER_BLOCK = 5    # 페이지내이션 한 블럭에 표시할 숫자 갯수
+
+    page = {}
+    page['page'] = this_page
+    page['total'] = ceil(total / PER_PAGE)
+    page['start'] = (ceil(this_page / PER_BLOCK) - 1) * PER_BLOCK + 1
+    page['end'] = page['start'] + (PER_BLOCK - 1)
+    if page['end'] > page['total']:
+        page['end'] = page['total']
+
+    page['next'] = ceil(this_page / PER_BLOCK) * PER_BLOCK + 1
+    page['next'] = page['next'] if page['next'] <= page['total'] else None
+    page['prev'] = (ceil(this_page / PER_BLOCK) - 1) * PER_BLOCK
+    page['prev'] = page['prev'] if page['prev'] > 1 else None
+
+    return page
 
 # ----- MAIN ----- #
 

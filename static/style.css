@@ -8,6 +8,8 @@ body {
     padding-top: 70px;
 }
 
+h3, h4 { font-weight: 600; }
+
 .container {
 	max-width:760px;
 }
@@ -15,7 +17,30 @@ body {
 p.text {
 	font-size:1.1em;
 	line-height:1.8em;
+}
 
+
+/* ----- NAV BAR ----- */
+
+.navbar .container {
+	padding-left:5px;
+	padding-right:10px;
+}
+
+.nav-pills {
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.nav-pills a {
+	color:#fff;
+}
+
+.nav-pills a:hover, .nav-pills a:focus {
+	color:#333;
+}
+
+nav.pages { text-align:center; }
 
 /* ----- LOGIN ----- */
 

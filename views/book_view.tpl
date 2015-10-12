@@ -17,7 +17,7 @@
             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;첫 화 보기
           </a>
           <a href="" class="btn btn-primary btn-sm" role="button">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;즐겨찾기
+            <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>&nbsp;즐겨찾기
           </a>
         </div>
         % if not list:

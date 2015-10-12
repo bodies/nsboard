@@ -18,19 +18,18 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand">HOME</a>
-        </div>
-        <div>
-          <ul class="nav navbar-nav">
-            <li><a href="/new">최신글</a></li>
-            <li><a href="/hot">인기글</a></li>
-            <li><a href="/keywords">키워드</a></li>
-            <li><a href="#">추천작</a></li>
-          </ul>
-        </div>
+    <div class="navbar navbar-fixed-top" style="background-color:#333;">
+      <div class="container">
+        <ul class="nav nav-pills pull-left">
+          <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+          <li><a href="/new">최신작</a></li>
+          <li><a href="/hot">인기작</a></li>
+          <li class="hidden-xs"><a href="#">추천작</a></li>
+          <li><a href="/keywords">키워드</a></li>
+        </ul>
+        <ul class="nav nav-pills pull-right">
+          <li><a href="#"><span class="glyphicon glyphicon-bookmark"></span></a></li>
+        </ul>
       </div>
-    </nav>
+    </div>
     <div class="container">

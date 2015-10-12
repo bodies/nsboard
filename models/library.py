@@ -139,11 +139,10 @@ class Library:
         except:
             raise
 
-    def story_list(self, book_num, page=1, order='DESC'):
+    def story_list(self, book_num, page=1, per_page=20, order='DESC'):
         # TODO: 페이지를 구현할 것!
         try:
-            start = (page - 1) * 20
-            end = start + 20
+            start = (page - 1) * per_page
 
             # DESC를 excute()에서 %s로 넘기면, 따옴표가 붙어서 에러 발생함.
             query = 'SELECT num, book_num, queue_num, title, public, view_count,\
@@ -151,7 +150,7 @@ class Library:
                 ORDER BY queue_num {} LIMIT %s, %s'.format(order)
             print('QUERY:', query)
 
-            self.cur.execute(query, (book_num, start, end))
+            self.cur.execute(query, (book_num, start, per_page))
 
             data = self.cur.fetchall()
             result = []
@@ -183,6 +182,36 @@ class Library:
         except Exception as e:
             print(str(e))
             raise
+
+    def book_list_keyword(self, keyword, page=1, per_page=20):
+        """ 주어진 키워드에 해당하는 작품 목록을 반환
+            작품 번호, 제목, 최종 갱신일, 등록된 글 수
+
+            TODO:
+            1. 주어진 키워드의 키워드 번호 확인
+            2. 키워드 번호를 가진 작품 번호 조회
+            3. 주어진 작품 번호로 작품 정보 목록 반환
+        """
+        try:
+            start = (page - 1) * per_page
+            self.cur.execute(
+                'SELECT num FROM keywords WHERE keyword=%s LIMIT 1',
+                (keyword,))
+            result = self.cur.fetchone()
+            if not result:
+                raise Exception('등록된 키워드가 아닙니다.')
+            keyword_num = result[0]
+
+            self.cur.execute(
+                'SELECT num, title, update_date,\
+                (SELECT count(s.num) FROM stories AS s WHERE s.book_num=b.num)\
+                as story_count FROM books AS b\
+                WHERE num IN (SELECT book_num FROM keyword_links WHERE keyword_num=%s)\
+                ORDER BY update_date DESC LIMIT %s, %s', (keyword_num, start, per_page))
+            return self.cur.fetchall()
+
+        except Exception as e:
+            raise e
 
     def book_info(self, book_num):
         try:
@@ -268,18 +297,26 @@ class Library:
         except:
             raise
 
-    def list_new(self, page=1):
+    def list_new(self, page=1, per_page=20):
         # 새로 등록된 작품 목록
         try:
-            start = (page - 1) * 20
-            end = start + 20
+            start = (page - 1) * per_page
             print('LIST_NEW')
             self.cur.execute(
                 'SELECT num, title, pub_date FROM stories\
-                ORDER BY pub_date DESC LIMIT %s, %s', (start, end))
+                ORDER BY pub_date DESC LIMIT %s, %s', (start, per_page))
+            # LIMIT 0, 4 => 0부터 시작해서 4개 (0, 1, 2, 3)
             result = self.cur.fetchall()
             return result
 
+        except Exception as e:
+            raise e
+
+    def add_view_count(self, story_num):
+        try:
+            self.cur.execute(
+                'UPDATE stories SET view_count=view_count+1 WHERE num=%s',
+                (story_num,))
         except Exception as e:
             raise e
 
@@ -353,6 +390,36 @@ class Library:
                 return result[0]
         except:
             raise
+
+    def story_count_all(self):
+        # 모든 글 갯수
+        try:
+            self.cur.execute(
+                'SELECT count(*) FROM stories')
+            result = self.cur.fetchone()
+            return result[0]
+        except:
+            raise
+
+    def book_count_keyword(self, keyword):
+        """ 주어진 키워드에 해당하는 작품의 갯수를 반환
+            TODO:
+            1. 쿼리를 하나로 합칠 것!
+        """
+        try:
+            self.cur.execute(
+                'SELECT num FROM keywords WHERE keyword=%s LIMIT 1',
+                (keyword,))
+            result = self.cur.fetchone()
+            keyword_num = result[0]
+
+            self.cur.execute(
+                'SELECT COUNT(DISTINCT(book_num)) FROM keyword_links WHERE keyword_num=%s',
+                (keyword_num,))
+            result = self.cur.fetchone()
+            return result[0]
+        except Exception as e:
+            raise e
 
     def queue_dupe_check(self, book_num, queue_num):
         try:

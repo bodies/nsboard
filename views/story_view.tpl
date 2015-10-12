@@ -29,7 +29,7 @@
 				<p class="text">{{ !data['story'] }}</p>
 				<p class="keywords"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
 				% for kw in data['keywords']:
-					<button type="button" class="btn btn-default btn-sm">{{ kw }}</button>
+					<a href="/k/{{ kw }}" class="btn btn-default btn-sm" role="button">{{ kw }}</a>
 				% end
 				<!-- % for kw in data['keywords']: -->
 					<!-- <a href="/t/{{ kw }}"><span class="label label-default">{{ kw }}</span></a> -->
