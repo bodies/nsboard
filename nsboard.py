@@ -28,7 +28,15 @@ app.mount('/a', admin.app)
 
 @app.route('/')
 def main():
-    return template('main', title='')
+    try:
+        lib = library.Library()
+        new = lib.list_new(1, 5)
+        # hot = lib.list_hot(1, 5)
+
+        return template('main', title='', new=new)
+    except Exception as e:
+        raise e
+
 
 
 @app.route('/b/<book_num:int>')

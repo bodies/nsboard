@@ -312,6 +312,13 @@ class Library:
         except Exception as e:
             raise e
 
+    def list_hot(self, page=1, per_page=20):
+        # 조회수가 가장 많은 글 목록
+        try:
+            pass
+        except Exception as e:
+            raise e
+
     def add_view_count(self, story_num):
         try:
             self.cur.execute(
