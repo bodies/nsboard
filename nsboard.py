@@ -38,7 +38,6 @@ def main():
         raise e
 
 
-
 @app.route('/b/<book_num:int>')
 def show_book(book_num):
     # 책 정보 & 연재글 목록 보기
@@ -49,6 +48,17 @@ def show_book(book_num):
     info['keywords'] = _keyword_links(info['keywords'])
     story_list = lib.story_list(book_num, this_page, PER_PAGE)
     return template('book_view', title='', info=info, list=story_list)
+
+
+@app.route('/b/<book_num:int>/<queue:int>')
+def redirect_to_story(book_num, queue):
+    try:
+        lib = library.Library()
+        story_num = lib.story_num(book_num, queue)
+    except Exception as e:
+        return template('popup', msg='해당 주소로 연결할 수 없습니다.')
+    else:
+        redirect('/s/{}'.format(story_num))
 
 
 @app.route('/s/<story_num:int>')
@@ -112,7 +122,11 @@ def list_hot():
 def list_keywords():
     # 키워드 목록
     try:
-        pass
+        lib = library.Library()
+        # lib.clean_keywords()
+        data = lib.list_keywords()
+
+        return template('keywords.tpl', title='', data=data)
     except Exception as e:
         return template('popup', msg=str(e))
 

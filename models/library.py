@@ -301,7 +301,6 @@ class Library:
         # 새로 등록된 작품 목록
         try:
             start = (page - 1) * per_page
-            print('LIST_NEW')
             self.cur.execute(
                 'SELECT num, title, pub_date FROM stories\
                 ORDER BY pub_date DESC LIMIT %s, %s', (start, per_page))
@@ -315,7 +314,25 @@ class Library:
     def list_hot(self, page=1, per_page=20):
         # 조회수가 가장 많은 글 목록
         try:
-            pass
+            start = (page - 1) * per_page
+            self.cur.execute(
+                'SELECT num, title, pub_date FROM stories\
+                ORDER BY pub_date DESC LIMIT %s, %s', (start, per_page))
+            # LIMIT 0, 4 => 0부터 시작해서 4개 (0, 1, 2, 3)
+            result = self.cur.fetchall()
+            return result
+
+        except Exception as e:
+            raise e
+
+    def list_keywords(self):
+        # 키워드 전체 목록을 반환
+        # TODO: 다양한 키워드 목록을 보여줄까? (인기순 등)
+        try:
+            self.cur.execute(
+                'SELECT keyword FROM keywords ORDER BY keyword ASC')
+            result = self.cur.fetchall()
+            return result
         except Exception as e:
             raise e
 
@@ -452,3 +469,19 @@ class Library:
             return result[0]
         except:
             raise
+
+    def clean_keywords(self):
+        # 키워드 테이블을 검색해서 빈 키워드면 삭제
+        try:
+            self.cur.execute(
+                'SELECT num, keyword FROM keywords')
+            keywords = self.cur.fetchall()
+            for row in keywords:
+                if row[1].strip() == '':
+                    self.cur.execute(
+                        'DELETE FROM keywords WHERE num=%s', (row[0],))
+                    self.cur.execute(
+                        'DELETE FROM keyword_links WHERE keyword_num=%s', (row[0],))
+            return True
+        except Exception as e:
+            raise e

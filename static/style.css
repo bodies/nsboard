@@ -24,9 +24,22 @@ p.text {
 
 /* ----- NAV BAR ----- */
 
+.navbar {
+	background-color:#932C4D;
+}
+
 .navbar .container {
 	padding-left:5px;
 	padding-right:10px;
+}
+
+.nav-title {
+	font-size:1.1em;
+	font-weight:600;
+	padding-right:20px;
+}
+
+.nav-title a {
 }
 
 .nav-pills {
@@ -36,6 +49,7 @@ p.text {
 
 .nav-pills a {
 	color:#fff;
+	padding:10px 12px !important;
 }
 
 .nav-pills a:hover, .nav-pills a:focus {
@@ -43,6 +57,9 @@ p.text {
 }
 
 nav.pages { text-align:center; }
+
+/* ----- MAIN ----- */
+.main-page table { margin-bottom:5px; }
 
 /* ----- LOGIN ----- */
 

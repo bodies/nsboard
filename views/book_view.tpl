@@ -13,7 +13,7 @@
           <p>키워드 |  {{ !', '.join(info['keywords']) }}</p>
         </div>
         <div class="buttons">
-          <a href="" class="btn btn-success btn-sm" role="button">
+          <a href="/b/{{ info['num'] }}/1" class="btn btn-success btn-sm" role="button">
             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;첫 화 보기
           </a>
           <a href="" class="btn btn-primary btn-sm" role="button">
