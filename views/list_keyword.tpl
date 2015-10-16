@@ -5,23 +5,23 @@
 				% else:
 				<div>
 					<h3>키워드 '{{ keyword }}'</h3>
-					<table class="table table-condensed">
+					<table class="table table-condensed table-list">
 						<thead>
 							<tr>
-								<th>작품번호</th>
-								<th>작품명</th>
-								<th>편수</th>
-								<th>최근 등록일</th>
+								<th>#</th>
+								<th>제 목</th>
+								<th style="width:40px;">편수</th>
+								<th style="width:70px;">갱신일</th>
 							</tr>
 						</thead>
 						<tbody>
 							% for r in data:
 							<tr>
-								<td style="text-align:center">{{ r[0] }}</td>
-								<td><a href="/b/{{ r[0] }}">{{ r[1] }}</a></td>
-								<td>{{ r[3] }}편</td>
+								<td>{{ r[0] }}</td>
+								<td style="text-align:left"><a href="/b/{{ r[0] }}">{{ r[1] }}</a></td>
+								<td>{{ r[3] }}</td>
 								<td>
-									<span title="{{ r[2] }}">{{ r[2].strftime('%Y/%m/%d') }}</span>
+									<span title="{{ r[2] }}">{{ r[2].strftime('%y/%m/%d') }}</span>
 								</td>
 							</tr>
 							% end

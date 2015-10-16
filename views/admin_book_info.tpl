@@ -41,14 +41,14 @@
                   </td>
                   <th>최근 연재일</th>
                   <td>
-                    <span title="{{ data['update_date'] }}">{{ data['update_date'].strftime('%Y/%m/%d') }}</span>
+                    <span title="{{ data['update_date'] }}">{{ data['update_date'].strftime('%Y/%m/%d') if data['update_date'] else '-' }}</span>
                   </td>
                 </tr>
                 <tr>
                   <th>조회수</th>
-                  <td>{{ data['view_count'] }} 회</td>
+                  <td>{{ data['view_count'] if data['view_count'] else '0' }} 회</td>
                   <th>평균 추천수</th>
-                  <td>약 {{ data['like_count'] }}</td>
+                  <td>약 {{ data['like_count'] if data['like_count'] else '0' }}</td>
                 </tr>
                 <tr>
                   <th>키워드</th>

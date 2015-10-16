@@ -23,10 +23,10 @@
               <td><a href="b/{{r['num']}}">{{ r['title'] }}</a></td>
               <td>{{ r['story_count'] }}</td>
               <td>
-                <span title="{{ r['update_date'] }}">{{ r['update_date'].strftime('%Y/%m/%d') }}</span>
+                <span title="{{ r['update_date'] }}">{{ r['update_date'].strftime('%y/%m/%d') if r['update_date'] else '-' }}</span>
               </td>
               <td>
-                <span title="{{ r['pub_date'] }}">{{ r['pub_date'].strftime('%Y/%m/%d') }}</span>
+                <span title="{{ r['pub_date'] }}">{{ r['pub_date'].strftime('%y/%m/%d') }}</span>
               </td>
             </tr>
             % end

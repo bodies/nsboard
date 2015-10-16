@@ -2,7 +2,7 @@
     admin.py
 """
 
-from bottle import Bottle, redirect, request, template, static_file
+from bottle import Bottle, redirect, request, template, static_file, BaseRequest
 from beaker.middleware import SessionMiddleware
 from models import library
 from string_cleaner import *
@@ -12,6 +12,8 @@ session_opts = {
     # 'session.cookie_expires': 3000,
     'session.auto': True
 }
+
+BaseRequest.MEMFILE_MAX = 1024 * 1024
 
 # ----- ROUTING ----- #
 
@@ -183,7 +185,6 @@ def write_story(book_num):
         data['queue_num'] = data['story_count'] + 1
         data['book_title'] = data['title']
         data['title'] = data['book_title'] + ' - ' + str(data['queue_num']) + '부'
-        print('WRITE_STORY!')
 
         return template('admin_write_story', title='', data=data,
                         action='/a/b/{}/write_story'.format(book_num))
@@ -200,17 +201,18 @@ def save_story(book_num):
         # 연재 순서는 pub_date로 지정된다.
         # 혹시 연재 순서를 잘못 올렸을 때는 그 이후 연재글을 다 지우고 새로 입력해야..
 
+        print('SAVE_STORY')
         queue = clean(request.forms.get('queue'))
+        print('QUEUE', queue)
         title = remove_tags(request.forms.getunicode('title'))
         story = remove_tags(request.forms.getunicode('story'))
         public_raw = request.forms.get('is_public').strip()
         public = 1 if public_raw == 'True' else 0
 
         lib = library.Library()
-
         if lib.queue_dupe_check(book_num, queue):
             raise Exception('{}회가 이미 존재합니다.'.format(queue))
-
+        print("SAVE_STORY")
         story_num = lib.new_story(book_num, queue, title, story, public)
 
         print('새로운 글 번호:', story_num)

@@ -25,7 +25,7 @@
           <li class="nav-title"><a href="/">여우비 책방</a></li>
           <li><a href="/new">최신작</a></li>
           <li class="hidden-xs"><a href="/hot">인기작</a></li>
-          <li class="hidden-xs"><a href="#">추천작</a></li>
+          <li><a href="#">추천작</a></li>
           <li><a href="/keywords">키워드</a></li>
         </ul>
         <ul class="nav nav-pills pull-right">

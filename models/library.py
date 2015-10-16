@@ -302,7 +302,7 @@ class Library:
         try:
             start = (page - 1) * per_page
             self.cur.execute(
-                'SELECT num, title, pub_date FROM stories\
+                'SELECT num, title, pub_date, view_count FROM stories\
                 ORDER BY pub_date DESC LIMIT %s, %s', (start, per_page))
             # LIMIT 0, 4 => 0부터 시작해서 4개 (0, 1, 2, 3)
             result = self.cur.fetchall()
