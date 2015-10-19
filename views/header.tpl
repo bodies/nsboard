@@ -18,11 +18,11 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <ul class="nav nav-pills pull-left">
           <!-- <li class="nav-title"><a href="/"><span class="glyphicon glyphicon-home"></span> 여우비 책방</a></li> -->
-          <li class="nav-title"><a href="/">여우비 책방</a></li>
+          <li class="nav-title"><a href="/">꿀단지.xyz</a></li>
           <li><a href="/new">최신작</a></li>
           <li class="hidden-xs"><a href="/hot">인기작</a></li>
           <li><a href="#">추천작</a></li>

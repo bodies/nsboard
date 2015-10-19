@@ -21,11 +21,16 @@ p.text {
 	line-height:1.8em;
 }
 
+.pagination { font-size:12px; font-weight:600;}
+
+.link-normal a { color:inherit; text-decoration:none;}
+
 
 /* ----- NAV BAR ----- */
 
 .navbar {
-	background-color:#932C4D;
+	/*background-color:#932C4D;*/
+	min-height:40px !important;
 }
 
 .navbar .container {
@@ -48,12 +53,13 @@ p.text {
 }
 
 .nav-pills a {
-	color:#fff;
-	padding:10px 8px !important;
+	/*color:#fff;*/
+	color:#444;
+	padding:6px 8px !important;
 }
 
 .nav-pills a:hover, .nav-pills a:focus {
-	color:#333;
+	/*color:#333;*/
 }
 
 nav.pages { text-align:center; }
@@ -77,21 +83,33 @@ nav.pages { text-align:center; }
 
 /* ----- PANEL ----- */
 
-.panel-simple .panel-body { padding:10px; }
-
-.panel-simple .panel-title {
-	padding: 8px 5px;
-	margin: 5px 10px 0 10px;
-	font-size: 1.1em;
-	border-bottom: 2px solid #ddd;
+.panel-simple {
+	border:none;
 }
 
-.panel-simple .more-link {
-	font-size:0.9em;
+.main-panel .panel-title {
+	padding: 8px 5px;
+	margin: 5px 10px 0 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.main-panel h3.panel-title {
+	font-size: 1.2em;
+	padding-bottom: 12px;
+}
+
+.main-panel h4.panel-title
+{ font-size: 15px; }
+
+.panel-simple .panel-body {
+	padding: 10px;
+}
+
+.main-panel .more-link {
+	font-size:11px;
 	font-weight:500;
-	text-align:center;
-	padding-right:1em;
-	text-decoration: underline;
+	padding: 5px 10px 0 0;
+	/*text-decoration: underline;*/
 }
 
 /* ----- TABLE ----- */
@@ -100,6 +118,7 @@ nav.pages { text-align:center; }
 
 .table-list td, .table-list th {
 	text-align: left;
+	border-bottom:1px solid #ddd;
 }
 
 .table-list td.table-title {

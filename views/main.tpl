@@ -1,9 +1,11 @@
 % include('header.tpl')
 			<div class="main-page">
 				<div class="row">
-					<div class="col-sm-6">
+          <div class="main-panel col-sm-6">
+            <h4 class="panel-title"><a class="link-normal" href="/new">새로 올라온 글</a>
+            <div class="more-link pull-right"><a href="/new">more</a></div>
+            </h4>
 						<div class="panel panel-default panel-simple">
-							<h4 class="panel-title">최근 글</h4>
 							<div class="panel-body">
 								<table class="table table-condensed table-hover borderless">
 									<tbody>
@@ -17,26 +19,30 @@
 									% end
 									</tbody>
 								</table>
-								<div class="more-link">
-									<a href="/new">최근 글 보기</a>
-								</div>
 							</div>
 						</div>  <!-- panel -->
 					</div>
-					<div class="col-sm-6">
+					<div class="main-panel col-sm-6">
+            <h4 class="panel-title">추천 작품
+            <div class="more-link pull-right"><a href="/">more</a></div>
+            </h4>
 						<div class="panel panel-default panel-simple">
-							<h3 class="panel-title">추천작</h3>
 							<div class="panel-body">
 								...
 							</div>
 						</div>  <!-- panel -->
 					</div>
 				</div>  <!-- row -->
-				<div class="panel panel-default panel-simple">
-					<h3 class="panel-title">키워드</h3>
-					<div class="panel-body">
-						...
-					</div>
-				</div>  <!-- panel -->
+        <div class="row">
+          <div class="main-panel col-sm-6">
+          <h4 class="panel-title">키워드
+          <div class="more-link pull-right"><a href="/keywords">more</a></div>
+          </h4>
+  				<div class="panel panel-default panel-simple">
+  					<div class="panel-body">
+  						...
+  					</div>
+  				</div>  <!-- panel -->
+        </div>  <!-- row -->
 			</div>  <!-- main-page -->
 % include('footer.tpl')

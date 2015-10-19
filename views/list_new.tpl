@@ -1,24 +1,23 @@
 % include('header.tpl')
-      <div class="list-new">
-        <h4>최근 등록된 작품</h4>
-        % if not data:
-        <p>등록된 작품이 없습니다.</p>
-        % else:
-        <div>
-          <table class="table table-hover table-list borderless">
-            <tbody>
-              % for r in data:
-              <tr>
-                <td>
-                  <span title="{{ r[2] }}">{{ r[2].strftime('%y/%m/%d') }}</span>
-                  &nbsp;
-                  <a href="/s/{{ r[0] }}">{{ r[1] }}</a>
-                  &nbsp;
-                  <span class="item-info hidden-xs">(조회: {{ r[3] }})</span>
-                </td>
-              </tr>
-              % end
-            </tbody>
+    <div class="list-new main-panel">
+      <h3 class="panel-title">새로 올라온 글</h3>
+      <div class="panel panel-default panel-simple">
+        <div class="panel-body">
+          % if not data:
+          <p>등록된 작품이 없습니다.</p>
+          % else:
+          <table class="table table-hover borderless">
+            % for r in data:
+            <tr>
+              <td>
+                <span title="{{ r[2] }}">{{ r[2].strftime('%y/%m/%d') }}</span>
+                &nbsp;
+                <a href="/s/{{ r[0] }}">{{ r[1] }}</a>
+                &nbsp;
+                <span class="item-info hidden-xs">(조회: {{ r[3] }})</span>
+              </td>
+            </tr>
+            % end
           </table>
           <nav class="pages">
             <ul class="pagination">
@@ -50,6 +49,7 @@
               % end
             </ul>
           </nav>
-        </div>
-      </div>  <!-- list-new -->
+        </div>  <!-- pane-body -->
+      </div>  <!-- panel -->
+    </div>  <!-- list-new -->
 % include('footer.tpl')
