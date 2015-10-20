@@ -161,6 +161,18 @@ def error404(error):
     # TODO: 제대로 된 '존재하지 않는 페이지입니다.'를 만들 것.
     return '존재하지 않는 페이지입니다.'
 
+
+# 개발 버전 서버 배치용
+# 지울 것!!!!!
+@app.route('/update_ns')
+def update_ns():
+    from subprocess import call
+    call('git', 'pull')
+    call('/home/bodies/bin/update_ns.sh')
+
+    return template('popup', msg='Updated.', dest='/')
+
+
 # -----  END OF ROUTING ----- #
 
 
@@ -191,6 +203,8 @@ def _pagination(this_page, total):
     page['prev'] = page['prev'] if page['prev'] > 1 else None
 
     return page
+
+
 
 # ----- MAIN ----- #
 
