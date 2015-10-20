@@ -1,5 +1,5 @@
 % include('header.tpl')
-			<div class="book-view">
+			<div class="page-view-book">
 				<h3>{{ info['title'] }}</h3>
 				% if not info:
 				<p>작품 정보가 존재하지 않습니다.</p>
