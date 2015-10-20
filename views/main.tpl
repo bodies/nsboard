@@ -1,5 +1,5 @@
 % include('header.tpl')
-			<div class="main-page">
+			<div class="page-main">
 				<div class="row">
           <div class="main-panel col-sm-6">
             <h4 class="panel-title"><a class="link-normal" href="/new">새로 올라온 글</a>

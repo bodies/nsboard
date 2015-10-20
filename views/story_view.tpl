@@ -2,7 +2,7 @@
 % prev_dp = ' hidden' if not data['prev'] else ''
 % next_dp = ' hidden' if not data['next'] else ''
 			<script src="/static/reader.js"></script>
-			<div class="story-view">
+			<div class="page-view-story">
 				<h2><a href="/b/{{ data['book_num'] }}">{{ data['book_title'] }}</a></h2>
 				<div class="story-nav clearfix">
 					<div class="pull-left">
@@ -38,7 +38,7 @@
 				</p>
 				<div class="buttons">
 					<a href="/b/{{ data['book_num'] }}" class="btn btn-primary" role="button">
-						<span class="glyphicon glyphicon-list"></span>&nbsp;목차 보기
+						<span class="glyphicon glyphicon-list"></span>&nbsp;목차
 					</a>
 					&nbsp;
 					<button class="btn btn-warning">
@@ -55,5 +55,5 @@
 							다음 화 <span class="glyphicon glyphicon-chevron-right"></span></a>
 					</div>
 				</div>
-			</div>  <!-- story-view -->
+			</div>  <!-- page-view-story -->
 % include('footer.tpl')

@@ -5,12 +5,13 @@
 body {
     font-size: 14px;
     font-family: NanumGothic, sans-serif;
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
 h2, h3, h4 { font-weight: 600; }
-h2 { font-size:24px;}
-h3 { font-size:22px; }
+h2 { font-size: 24px;}
+h3 { font-size: 20px; }
+h4 { font-size: 15px;}
 
 .container {
 	max-width:760px;
@@ -26,135 +27,109 @@ p.text {
 .link-normal a { color:inherit; text-decoration:none;}
 
 
-/* ----- NAV BAR ----- */
+/* ---------- COMPONENTS ---------- */
 
+/* Nav Bar */
 .navbar {
 	/*background-color:#932C4D;*/
 	min-height:40px !important;
 }
-
-.navbar .container {
-	padding-left:5px;
-	padding-right:10px;
-}
-
+.navbar .container { padding: 0 10px 0 5px; }
 .nav-title {
 	font-size:1.1em;
 	font-weight:600;
 	padding-right:10px;
 }
-
-.nav-title a {
-}
-
-.nav-pills {
-	padding-top:5px;
-	padding-bottom:5px;
-}
-
+.nav-title a { }
+.nav-pills { padding:5px 0; }
 .nav-pills a {
 	/*color:#fff;*/
 	color:#444;
 	padding:6px 8px !important;
 }
-
 .nav-pills a:hover, .nav-pills a:focus {
 	/*color:#333;*/
 }
-
 nav.pages { text-align:center; }
 
-/* ----- MAIN ----- */
-.main-page table { margin-bottom:5px; }
 
-/* ----- LOGIN ----- */
+/* Panel */
+.panel-simple { border:none; }
 
-#login {
-    max-width: 380px;
-    margin: 140px auto;
-}
-
-#form-login {
-}
-
-
-/* ----- KEYWORDS ----- */
-.btn-keyword { margin-bottom:4px;}
-
-/* ----- PANEL ----- */
-
-.panel-simple {
-	border:none;
-}
-
+.main-panel { padding:0 5px; }
 .main-panel .panel-title {
 	padding: 8px 5px;
-	margin: 5px 10px 0 10px;
+	margin: 5px 5px 0 5px;
 	border-bottom: 1px solid #ddd;
 }
-
 .main-panel h3.panel-title {
-	font-size: 1.2em;
+	/*font-size: 1.2em;*/
 	padding-bottom: 12px;
 }
-
-.main-panel h4.panel-title
-{ font-size: 15px; }
-
-.panel-simple .panel-body {
-	padding: 10px;
-}
-
+.main-panel h4.panel-title {}
 .main-panel .more-link {
 	font-size:11px;
 	font-weight:500;
-	padding: 5px 10px 0 0;
+	padding: 5px 15px 0 0;
 	/*text-decoration: underline;*/
 }
+.panel-simple .panel-body {
+	padding: 5px;
+}
 
-/* ----- TABLE ----- */
 
+/* Keywords */
+.btn-keyword { margin-bottom:4px;}
+
+
+/* Table */
 .table-list { margin-top:30px; }
-
 .table-list td, .table-list th {
 	text-align: left;
 	border-bottom:1px solid #ddd;
 }
-
 .table-list td.table-title {
 	text-align: left;
 }
-
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
     border: none;
 }
-
 .item-info {
 	color: #888;
 	font-size:0.9em;
 }
 
 
-/* ----- USER - BOOK-VIEW ------ */
-.book-view { }
-.book-view h3 {
-	font-weight: 600;
+/* ---------- PAGES ---------- */
+
+/* Main */
+.page-main {}
+.page-main table { margin-bottom: 5px;}
+
+/* List - New */
+.page-list-new {}
+
+/* View - Book */
+.page-view-book { }
+.page-view-book h3 {
 	letter-spacing:-1px;
 }
-.book-view .story-list { margin:40px 0 10px 0; }
-.book-view .story-list .story-list-header {
+.page-view-book .story-list { margin:40px 0 10px 0; }
+.page-view-book .story-list .story-list-header {
 	margin:10px 0 5px 0; padding: 2px;
 	font-weight: bold;
 }
-.book-view .story-list .story-list-item { padding:10px 10px 2px 5px; }
-.book-view .buttons { text-align: right; }
+.page-view-book .story-list .story-list-item { padding:10px 10px 2px 5px; }
+.page-view-book .buttons { text-align: right; }
 
-/* ----- USER - STORY-VIEW ----- */
-.story-view { }
-.story-view h2 {
-	margin-bottom:30px; text-align: center;
-	font-size:26px; }
-.story-view h3 {
+/* View - Story */
+.page-view-story { }
+.page-view-story h2 {
+	margin: 5px 0 20px 0;
+	text-align: center;
+	font-size: 16px;
+}
+.page-view-story h3 {
 	font-weight: 700;
 	letter-spacing:-2px;
 	word-break: break-all;
@@ -162,7 +137,18 @@ nav.pages { text-align:center; }
 	padding:0 0 10px 0;
 	border-bottom:1px solid #e7e7e7;
 }
-.story-view .resizer { margin-bottom:20px; padding-right:10px;}
-.story-view p.keywords { margin: 30px 0; }
-.story-view .buttons { text-align:center;}
-.story-view .story-nav { margin:20px -10px; }
+.page-view-story .resizer { margin-bottom:20px; padding-right:10px;}
+.page-view-story p.keywords { margin: 30px 0; }
+.page-view-story .buttons { text-align:center;}
+.page-view-story .story-nav { margin:20px -10px; }
+
+/* Login */
+#login {
+    max-width: 380px;
+    margin: 140px auto;
+}
+#form-login {
+}
+
+
+
