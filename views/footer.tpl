@@ -1,4 +1,4 @@
-    </div>  <!-- end of container-fluid -->
+    </div>  <!-- end of container -->
     <div class="footer">
       <ul class="">
         <li><a href="">꿀단지</a></li>

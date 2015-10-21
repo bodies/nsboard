@@ -35,14 +35,15 @@
 				</div>  <!-- row -->
         <div class="row">
           <div class="main-panel col-sm-6">
-          <h4 class="panel-title">키워드
-          <div class="more-link pull-right"><a href="/keywords">more</a></div>
-          </h4>
-  				<div class="panel panel-default panel-simple">
-  					<div class="panel-body">
+            <h4 class="panel-title">키워드
+              <div class="more-link pull-right"><a href="/keywords">more</a></div>
+            </h4>
+  				  <div class="panel panel-default panel-simple">
+  					 <div class="panel-body">
   						...
-  					</div>
-  				</div>  <!-- panel -->
+  					 </div>
+  				  </div>  <!-- panel -->
+          </div>  <!-- main-panel -->
         </div>  <!-- row -->
-			</div>  <!-- main-page -->
+			</div>  <!-- page-main -->
 % include('footer.tpl')

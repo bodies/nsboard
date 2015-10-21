@@ -18,9 +18,8 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
-
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
             <span class="sr-only">메뉴 열기</span>
@@ -30,7 +29,6 @@
           </button>
           <a class="navbar-brand" href="/">꿀단지</a>
         </div>  <!-- navbar-header -->
-
         <div class="collapse navbar-collapse" id="navbar-menu">
           <ul class="nav navbar-nav">
             <li><a href="/new">최신작</a></li>
@@ -38,14 +36,12 @@
             <li><a href="#">추천작</a></li>
             <li><a href="/keywords">키워드</a></li>
           </ul>
-
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
               <input type="text" class="form-control input-sm" placeholder="제목 검색">
             </div>
           </form>
-        </div>
-
+        </div>  <!-- collapse -->
       </div>  <!-- container -->
     </nav>
     <div class="container">
