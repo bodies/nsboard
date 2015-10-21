@@ -167,7 +167,7 @@ def error404(error):
 @app.route('/update_ns')
 def update_ns():
     from subprocess import call
-    call(['git', 'pull'])
+    call(['/home/bodies/www/nsboard/git', 'pull'])
     call('/home/bodies/bin/update_ns.sh')
 
     return template('popup', msg='Updated.', dest='/')

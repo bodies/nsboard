@@ -18,19 +18,34 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <div class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-        <ul class="nav nav-pills pull-left">
-          <!-- <li class="nav-title"><a href="/"><span class="glyphicon glyphicon-home"></span> 여우비 책방</a></li> -->
-          <li class="nav-title"><a href="/">꿀단지.xyz</a></li>
-          <li><a href="/new">최신작</a></li>
-          <li class="hidden-xs"><a href="/hot">인기작</a></li>
-          <li><a href="#">추천작</a></li>
-          <li><a href="/keywords">키워드</a></li>
-        </ul>
-        <ul class="nav nav-pills pull-right">
-          <li><a href="#"><span class="glyphicon glyphicon-bookmark"></span></a></li>
-        </ul>
-      </div>
-    </div>
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
+            <span class="sr-only">메뉴 열기</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">꿀단지</a>
+        </div>  <!-- navbar-header -->
+
+        <div class="collapse navbar-collapse" id="navbar-menu">
+          <ul class="nav navbar-nav">
+            <li><a href="/new">최신작</a></li>
+            <li class="hidden-xs"><a href="/hot">인기작</a></li>
+            <li><a href="#">추천작</a></li>
+            <li><a href="/keywords">키워드</a></li>
+          </ul>
+
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control input-sm" placeholder="제목 검색">
+            </div>
+          </form>
+        </div>
+
+      </div>  <!-- container -->
+    </nav>
     <div class="container">

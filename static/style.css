@@ -35,12 +35,20 @@ p.text {
 	min-height:40px !important;
 }
 .navbar .container { padding: 0 10px 0 5px; }
-.nav-title {
-	font-size:1.1em;
+.navbar-brand {
+	height:40px;
+	font-size:17px;
 	font-weight:600;
-	padding-right:10px;
+	padding:10px 15px;
+	margin-left:10px;
 }
-.nav-title a { }
+.navbar-form { margin:5px 0;}
+.navbar-nav li a { padding:10px 15px; }
+.navbar-toggle {
+	padding:7px;
+	margin:5px 20px 5px 0;
+}
+.navbar-toggle .icon-bar { width:20px; }
 .nav-pills { padding:5px 0; }
 .nav-pills a {
 	/*color:#fff;*/
