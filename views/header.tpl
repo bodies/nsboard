@@ -29,18 +29,18 @@
           </button>
           <a class="navbar-brand" href="/">꿀단지</a>
         </div>  <!-- navbar-header -->
-        <div class="collapse navbar-collapse" id="navbar-menu">
+        <div class="collapse navbar-collapse navbar-right" id="navbar-menu">
           <ul class="nav navbar-nav">
             <li><a href="/new">최신작</a></li>
             <li class="hidden-xs"><a href="/hot">인기작</a></li>
             <li><a href="#">추천작</a></li>
             <li><a href="/keywords">키워드</a></li>
           </ul>
-          <form class="navbar-form navbar-right" role="search">
+          <!-- <form class="nav navbar-form navbar-right" role="search">
             <div class="form-group">
               <input type="text" class="form-control input-sm" placeholder="제목 검색">
             </div>
-          </form>
+          </form> -->
         </div>  <!-- collapse -->
       </div>  <!-- container -->
     </nav>

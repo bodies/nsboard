@@ -30,7 +30,7 @@ app.mount('/a', admin.app)
 def main():
     try:
         lib = library.Library()
-        new = lib.list_new(1, 5)
+        new = lib.list_new_preview(1, 8)
         # hot = lib.list_hot(1, 5)
 
         return template('main', title='', new=new)

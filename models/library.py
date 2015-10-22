@@ -311,6 +311,19 @@ class Library:
         except Exception as e:
             raise e
 
+    def list_new_preview(self, page=1, per_page=10):
+        try:
+            start = (page - 1) * per_page
+            self.cur.execute(
+                'SELECT num, title, pub_date,\
+                (SELECT LEFT(story, 200) FROM story_data AS d\
+                WHERE d.num=s.num) AS preview FROM stories AS s\
+                ORDER BY pub_date DESC LIMIT %s, %s', (start, per_page))
+            result = self.cur.fetchall()
+            return result
+        except Exception as e:
+            raise e
+
     def list_hot(self, page=1, per_page=20):
         # 조회수가 가장 많은 글 목록
         try:
