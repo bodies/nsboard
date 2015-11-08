@@ -1,4 +1,8 @@
 % include('header.tpl')
+      <div class="jumbotron">
+        <h1>꿀단지</h1>
+        <p>즐거운 어른 소설 창고</p>
+      </div>
 			<div class="page-main">
         <div class="main-panel">
           <h3>새로 올라온 작품</h3>
@@ -8,7 +12,12 @@
             <p>{{ r[3] }}... (<a href="">더 보기</a>)</p>
           </div>
           % end
-          <div><a href="/new">전체 새 글 목록</a></div>
+          <nav>
+            <ul class="pager">
+              <li class="previous"><a href="">이전</a></li>
+              <li class="next"><a href="">다음</a></li>
+            </ul>
+          </nav>
         </div>  <!-- main-panel -->
       </div>  <!-- page-main -->
 % include('footer.tpl')

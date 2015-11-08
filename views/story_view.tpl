@@ -18,10 +18,10 @@
 				<h3>{{ data['title'] }}</h3>
 				<div class="resizer clearfix">
 					<div class="btn-group pull-right btn-group-sm" role="group">
-						<button type="button" class="btn btn-default" onclick="text_size_down();">
+						<button type="button" class="btn btn-default" aria-label="글자 축소" onclick="text_size_down();">
 							<span class="glyphicon glyphicon-minus"></span>
 						</button>
-						<button type="button" class="btn btn-default" onclick="text_size_up();">
+						<button type="button" class="btn btn-default" aria-label="글자 확대" onclick="text_size_up();">
 							<span class="glyphicon glyphicon-plus"></span>
 						</button>
 					</div>

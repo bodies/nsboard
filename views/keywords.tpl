@@ -1,6 +1,6 @@
 % include('header.tpl')
 			<div class="list-new main-panel">
-				<h3 class="panel-title">전체 키워드 목록
+				<h3>전체 키워드 목록
 					<small>(가나다 순)</small>
 				</h3>
 				<div class="panel panel-default panel-simple">

@@ -1,7 +1,7 @@
 % include('header.tpl')
-    <div class="page-list-new row">
+    <div class="page-list-new">
       <div class="main-panel">
-        <h3 class="panel-title">새로 올라온 글</h3>
+        <h3>새로 올라온 글</h3>
         <div class="panel panel-default panel-simple">
           <div class="panel-body">
             % if not data:
