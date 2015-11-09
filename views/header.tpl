@@ -27,7 +27,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">꿀단지</a>
+          <a class="navbar-brand" href="/">꿀단지<sup>beta</sup></a>
         </div>  <!-- navbar-header -->
         <div class="collapse navbar-collapse navbar-right" id="navbar-menu">
           <ul class="nav navbar-nav">

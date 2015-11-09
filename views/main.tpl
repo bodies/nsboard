@@ -5,19 +5,16 @@
       </div>
 			<div class="page-main">
         <div class="main-panel">
-          <h3>새로 올라온 작품</h3>
+          <h3>새로 등록된 작품</h3>
           % for r in new:
           <div class="list-preview">
             <h4><a href="/s/{{ r[0] }}">{{ r[1] }}</a> <small><span title="{{ r[2] }}">{{ r[2].strftime('%Y/%m/%d') }}</span></small></h4>
             <p>{{ r[3] }}... (<a href="">더 보기</a>)</p>
           </div>
           % end
-          <nav>
-            <ul class="pager">
-              <li class="previous"><a href="">이전</a></li>
-              <li class="next"><a href="">다음</a></li>
-            </ul>
-          </nav>
+          <div class="list-preview-more">
+          <a href="/new" class="btn btn-default btn-lg">새로운 작품 더 보기</a>
+          </div>
         </div>  <!-- main-panel -->
       </div>  <!-- page-main -->
 % include('footer.tpl')
