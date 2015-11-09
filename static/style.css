@@ -146,6 +146,7 @@ nav.pages { text-align:center; }
 }
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
     border: none;
+    padding: 8px 0;
 }
 .item-info {
 	color: #888;
@@ -161,6 +162,11 @@ nav.pages { text-align:center; }
 
 /* List - New */
 .page-list-new {}
+
+/* List - Keywords */
+.keyword-cloud {
+	margin:20px 0;
+}
 
 /* View - Book */
 .page-view-book { }
@@ -191,7 +197,7 @@ nav.pages { text-align:center; }
 	/*border-bottom:1px solid #e7e7e7;*/
 }
 .page-view-story .resizer { margin-bottom:20px; padding-right:20px; }
-.page-view-story .resizer .glyphicon { color:#666; font-size:16px;}
+.page-view-story .resizer .glyphicon { color:#666; }
 .page-view-story p.keywords { margin: 30px 0; }
 .page-view-story .buttons { text-align:center;}
 .page-view-story .story-nav { margin:20px -10px; }
