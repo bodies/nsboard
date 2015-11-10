@@ -14,6 +14,7 @@ session_opts = {
 }
 
 BaseRequest.MEMFILE_MAX = 1024 * 1024
+SITE_NAME = '꿀단지 (관리)'
 
 # ----- ROUTING ----- #
 
@@ -38,12 +39,14 @@ def check_auth(func):
 @app.route('/')
 @check_auth
 def admin_main():
-    return template('admin_main', title='')
+    title = SITE_NAME
+    return template('admin_main', title=title)
 
 
 @app.route('/login')
 def login_form():
-    return template('login', title='', action='login')
+    title = '로그인 - ' + SITE_NAME
+    return template('login', title=title, action='login')
 
 
 @app.route('/login', method='POST')
@@ -80,8 +83,8 @@ def show_book_list():
     try:
         lib = library.Library()
         result = lib.book_list()
-
-        return template('admin_book_list', title='', data=result)
+        title = '작품 목록 - ' + SITE_NAME
+        return template('admin_book_list', title=title, data=result)
     except Exception as e:
         return template('popup', msg=str(e))
 
@@ -89,7 +92,8 @@ def show_book_list():
 @app.route('/new_book')
 @check_auth
 def new_book_form():
-    return template('admin_new_book', title='', action='/a/new_book')
+    title = '새 작품 등록 - ' + SITE_NAME
+    return template('admin_new_book', title=title, action='/a/new_book')
 
 
 @app.route('/new_book', method='post')
@@ -137,8 +141,9 @@ def modify_book(book_num):
         lib = library.Library()
         book_info = lib.book_info(book_num)
         mod = True
-        return template('admin_new_book', title='<{}> 정보 수정'.format(book_info['title']),
-                        data=book_info, mod=mod, action='/a/b/{}/mod'.format(book_num))
+        title = '<' + book_info['title'] + '> 정보 수정 - ' + SITE_NAME
+        return template('admin_new_book', title=title, data=book_info, mod=mod,
+                        action='/a/b/{}/mod'.format(book_num))
     except Exception as e:
         print('MODIFY_BOOK:', str(e))
         return template('popup', msg='작품 정보를 수정할 수 없습니다.')
@@ -149,16 +154,13 @@ def modify_book(book_num):
 def story_list(book_num):
     try:
         page = request.query.get('p', 1)
-
         lib = library.Library()
         data = lib.story_list(book_num, page)
-
         book_title = lib.book_name(book_num)
+        title = book_title + ' 연재 목록 - ' + SITE_NAME
 
-        return template(
-            'admin_story_list', title='{} - 연재글 목록'.format(book_title),
-            book_title=book_title, book_num=book_num, data=data)
-
+        return template('admin_story_list', title=title, book_title=book_title,
+                        book_num=book_num, data=data)
     except Exception as e:
         msg = 'STORY_LIST: {}'.format(str(e))
         return template('popup', msg=msg)
@@ -170,7 +172,8 @@ def book_info(book_num):
     try:
         lib = library.Library()
         data = lib.book_info(book_num)
-        return template('admin_book_info', title='', data=data)
+        title = data['title'] + ' - ' + SITE_NAME
+        return template('admin_book_info', title=title, data=data)
     except Exception as e:
         return template('popup', msg='작품 정보를 출력할 수 없습니다.\\n{}'.format(str(e)))
 
@@ -184,9 +187,10 @@ def write_story(book_num):
         data = lib.book_info(book_num)
         data['queue_num'] = data['story_count'] + 1
         data['book_title'] = data['title']
-        data['title'] = data['book_title'] + ' - ' + str(data['queue_num']) + '부'
+        data['title'] = data['book_title'] + ' ' + str(data['queue_num']) + '부'
+        title = '"' + data['book_title'] + '" 연재 - ' + SITE_NAME
 
-        return template('admin_write_story', title='', data=data,
+        return template('admin_write_story', title=title, data=data,
                         action='/a/b/{}/write_story'.format(book_num))
 
     except Exception as e:

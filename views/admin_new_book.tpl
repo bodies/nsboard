@@ -1,6 +1,5 @@
-% include('header.tpl')
-% include('menu_admin.tpl')
-    <div class="col-md-10">
+% include('admin_header.tpl')
+    <div>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">

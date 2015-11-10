@@ -1,6 +1,5 @@
 % include('admin_header.tpl')
-% include('menu_admin.tpl')
-      <div class="col-md-10">
+      <div>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">{{ data['title'] }}</h3>
@@ -72,5 +71,5 @@
             % end
           </div>  <!-- panel-body -->
         </div>  <!-- panel -->
-      </div>  <!-- col-md-10 -->
+      </div>
 % include('footer.tpl')
