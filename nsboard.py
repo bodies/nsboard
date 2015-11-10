@@ -18,6 +18,7 @@ from math import ceil
 
 # ----- GLOBALS ----- #
 PER_PAGE = 20
+SITE_NAME = '꿀단지'
 
 # ----- ROUTING ----- #
 
@@ -32,8 +33,9 @@ def main():
         lib = library.Library()
         new = lib.list_new_preview(1, 8)
         # hot = lib.list_hot(1, 5)
+        title = SITE_NAME + ' - 즐거운 어른 소설 창고'
 
-        return template('main', title='', new=new)
+        return template('main', title=title, new=new)
     except Exception as e:
         raise e
 
@@ -47,7 +49,8 @@ def show_book(book_num):
     info = lib.book_info(book_num)
     info['keywords'] = _keyword_links(info['keywords'])
     story_list = lib.story_list(book_num, this_page, PER_PAGE)
-    return template('book_view', title='', info=info, list=story_list)
+    title = info['title'] + ' - ' + SITE_NAME
+    return template('book_view', title=title, info=info, list=story_list)
 
 
 @app.route('/b/<book_num:int>/<queue:int>')
@@ -73,7 +76,8 @@ def show_story(story_num):
         data['story'] = data['story'].replace('\n', '<br />')
         # data['keywords'] = _keyword_links(data['keywords'])
         lib.add_view_count(story_num)
-        return template('story_view', title='', data=data)
+        title = data['title'] + ' - ' + SITE_NAME
+        return template('story_view', title=title, data=data)
     except Exception as e:
         return template('popup', msg=str(e))
 
@@ -101,8 +105,8 @@ def list_new():
         # 페이지네이션
         total = lib.story_count_all()
         page = _pagination(this_page, total)
-
-        return template('list_new', title='', data=data, page=page)
+        title = '최근 작품 목록' + ' - ' + SITE_NAME
+        return template('list_new', title=title, data=data, page=page)
     except Exception as e:
         return template('popup', msg=str(e))
 
@@ -113,7 +117,8 @@ def list_hot():
     try:
         data = ''
         return
-        return template('list_hot', title='', data=data)
+        title = '인기 작품 목록' + ' - ' + SITE_NAME
+        return template('list_hot', title=title, data=data)
     except Exception as e:
         return template('popup', msg=str(e))
 
@@ -126,7 +131,8 @@ def list_keywords():
         # lib.clean_keywords()
         data = lib.list_keywords()
 
-        return template('keywords.tpl', title='', data=data)
+        title = '키워드 보기' + ' - ' + SITE_NAME
+        return template('keywords.tpl', title=title, data=data)
     except Exception as e:
         return template('popup', msg=str(e))
 
@@ -145,8 +151,9 @@ def book_list_by_keyword(keyword):
         data = lib.book_list_keyword(keyword, this_page, PER_PAGE)
         total = lib.book_count_keyword(keyword)
         page = _pagination(this_page, total)
+        title = '"' +  keyword + '" 작품 목록' + ' - ' + SITE_NAME
 
-        return template('list_keyword', title='', data=data, keyword=keyword, page=page)
+        return template('list_keyword', title=title, data=data, keyword=keyword, page=page)
     except Exception as e:
         return template('popup', msg=str(e))
 
@@ -160,17 +167,6 @@ def serve_static(filename):
 def error404(error):
     # TODO: 제대로 된 '존재하지 않는 페이지입니다.'를 만들 것.
     return '존재하지 않는 페이지입니다.'
-
-
-# 개발 버전 서버 배치용
-# 지울 것!!!!!
-@app.route('/update_ns')
-def update_ns():
-    from subprocess import call
-    call(['/home/bodies/www/nsboard/git', 'pull'])
-    call('/home/bodies/bin/update_ns.sh')
-
-    return template('popup', msg='Updated.', dest='/')
 
 
 # -----  END OF ROUTING ----- #
