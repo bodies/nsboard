@@ -17,7 +17,7 @@
 
         <h3>{{ data['title'] }}</h3>
         <div class="resizer clearfix">
-          <div class="btn-group pull-right btn-group-sm" role="group">
+          <div class="btn-group pull-right btn-group-xs" role="group">
             <button type="button" class="btn btn-default" aria-label="글자 축소" onclick="text_size_down();">
               <span class="glyphicon glyphicon-minus"></span>
             </button>
@@ -29,11 +29,11 @@
         <p class="text">{{ !data['story'] }}</p>
         <p class="keywords"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
         % for kw in data['keywords']:
-          <a href="/k/{{ kw }}" class="btn btn-default btn-sm" role="button">{{ kw }}</a>
-        % end
-        <!-- % for kw in data['keywords']: -->
-          <!-- <a href="/t/{{ kw }}"><span class="label label-default">{{ kw }}</span></a> -->
+          <!-- <a href="/k/{{ kw }}" class="btn btn-default btn-sm" role="button">{{ kw }}</a> -->
         <!-- % end -->
+        <!-- % for kw in data['keywords']: -->
+          <a href="/k/{{ kw }}"><span class="label label-default">{{ kw }}</span></a>
+        % end
         <!-- {{ !', '.join(data['keywords']) }} -->
         </p>
         <div class="buttons">

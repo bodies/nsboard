@@ -44,9 +44,9 @@ p.text {
 /* Nav Bar */
 .navbar {
 	/*background-color:#932C4D;*/
-	background-color:#fff;
+	background-color:#f9f9f9;
 	min-height:46px !important;
-	border-bottom:1px solid #ccc;
+	border-bottom:1px solid #efefef;
 }
 .navbar a { color:#444; }
 /*.navbar .container { padding: 0 10px 0 5px; }*/
@@ -87,6 +87,7 @@ nav.pages { text-align:center; }
 
 /* Jumbotron */
 .jumbotron {
+	background-color: #efefef;
 	padding:20px;
 	text-align:center;
 }
@@ -133,6 +134,7 @@ nav.pages { text-align:center; }
 
 /* Keywords */
 .btn-keyword { margin-bottom:4px;}
+.label-tag { }
 
 
 /* Table */
@@ -196,7 +198,7 @@ nav.pages { text-align:center; }
 	padding:0;
 	/*border-bottom:1px solid #e7e7e7;*/
 }
-.page-view-story .resizer { margin-bottom:20px; padding-right:20px; }
+.page-view-story .resizer { margin-bottom:20px; padding-right:15px; }
 .page-view-story .resizer .glyphicon { color:#666; }
 .page-view-story p.keywords { margin: 30px 0; }
 .page-view-story .buttons { text-align:center;}
