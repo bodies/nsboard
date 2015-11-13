@@ -1,6 +1,6 @@
 function text_size_up() {
 	currentSize = parseInt($(".text").css("font-size"));
-	if (currentSize < 23) {
+	if (currentSize < 21) {
 		$(".text").css("font-size", currentSize + 2);
 	}
 }
