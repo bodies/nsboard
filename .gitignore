@@ -4,7 +4,6 @@
 # Pycharm
 .idea/
 
-
 # Python
 __pycache__/
 config.py
