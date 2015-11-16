@@ -1,12 +1,12 @@
 # OSX
-.DS_S
+.DS_Store
 
 # Pycharm
 .idea/
 
 # Python
 __pycache__/
-config.py
 
 # etc
+config.py
 tmp/
