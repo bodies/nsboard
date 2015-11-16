@@ -7,7 +7,7 @@
 
 import mysql.connector as conn
 from mysql.connector import errorcode
-from config_db import *
+from config import *
 
 TABLES = []
 

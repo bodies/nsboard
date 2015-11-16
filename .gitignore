@@ -1,9 +1,13 @@
-# Sublime Text
-nsboard.sublime-*
+# OSX
+.DS_S
+
+# Pycharm
+.idea/
+
 
 # Python
 __pycache__/
-config_db.py
+config.py
 
 # etc
 tmp/

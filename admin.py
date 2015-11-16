@@ -5,6 +5,7 @@
 from bottle import Bottle, redirect, request, template, static_file, BaseRequest
 from beaker.middleware import SessionMiddleware
 from models import library
+from config import DB_USER, DB_PASSWORD, DB_NAME, SITE_NAME
 from string_cleaner import *
 
 session_opts = {
@@ -14,7 +15,7 @@ session_opts = {
 }
 
 BaseRequest.MEMFILE_MAX = 1024 * 1024
-SITE_NAME = '꿀단지 (관리)'
+SITE_NAME += ' (관리)'
 
 # ----- ROUTING ----- #
 
@@ -283,11 +284,9 @@ def modify_story(story_num):
 @check_auth
 def backup():
     import os
-    from config_db import DB_USER, DB_PASSWORD, DB_NAME
     import time
     str_date = 'nsboard_{}'.format(time.strftime('%Y%m%d%H%M%S'))
-    os.system('mysqldump -u{} -p{} {} > {}.sql'.format(DB_USER,
-              DB_PASSWORD, DB_NAME, str_date))
+    os.system('mysqldump -u{} -p{} {} > {}.sql'.format(DB_USER, DB_PASSWORD, DB_NAME, str_date))
     os.system('tar zcf nsboard.tar.gz {}.sql'.format(str_date))
     os.system('rm {}.sql'.format(str_date))
     os.system('mv nsboard.tar.gz ./tmp/{}.tar.gz'.format(str_date))

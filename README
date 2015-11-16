@@ -4,4 +4,4 @@
 - mysql-connector-python
 
 * Important files in gitignore
- - config_db.py (DB 접속 정보. 서버 환경에 맞게 따로 작성할 것.)
+ - config.py (site- and db-specific info.)
