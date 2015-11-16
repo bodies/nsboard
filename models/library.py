@@ -5,7 +5,7 @@
 """
 
 import mysql.connector as conn
-from config_db import *
+from config import *
 
 
 class Library:
