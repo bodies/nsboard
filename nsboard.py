@@ -13,6 +13,7 @@ from models import library
 from config import SITE_NAME
 
 import admin
+import ajax
 
 from math import ceil
 
@@ -23,6 +24,7 @@ PER_PAGE = 20
 
 app = Bottle()
 app.mount('/a', admin.app)
+app.mount('/ajax', ajax.app)
 
 
 @app.route('/')
@@ -165,6 +167,10 @@ def serve_static(filename):
 def error404(error):
     # TODO: 제대로 된 '존재하지 않는 페이지입니다.'를 만들 것.
     return '존재하지 않는 페이지입니다.'
+
+@app.route('/test')
+def test():
+    return template('test', title="AJAX TEST")
 
 
 # -----  END OF ROUTING ----- #

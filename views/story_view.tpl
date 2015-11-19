@@ -1,6 +1,7 @@
 % include('header.tpl')
 % prev_dp = ' hidden' if not data['prev'] else ''
 % next_dp = ' hidden' if not data['next'] else ''
+      <script src="/static/cookie.js"></script>
       <script src="/static/reader.js"></script>
       <div class="page-view-story">
         <h2><a href="/b/{{ data['book_num'] }}">{{ data['book_title'] }}</a></h2>
@@ -17,14 +18,17 @@
 
         <h3>{{ data['title'] }}</h3>
         <div class="resizer clearfix">
-          <div class="btn-group pull-right btn-group-sm" role="group">
-            <button type="button" class="btn btn-default" aria-label="글자 축소" onclick="text_size_down();">
-              <span class="glyphicon glyphicon-minus"></span>
-            </button>
-            <button type="button" class="btn btn-default" aria-label="글자 확대" onclick="text_size_up();">
-              <span class="glyphicon glyphicon-plus"></span>
-            </button>
-          </div>
+          <button type="button" class="btn btn-sm btn-default pull-right" id="change-font-size" role="button">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          <!--<div class="btn-group pull-right btn-group-sm" role="group">-->
+            <!--<button type="button" class="btn btn-default" aria-label="글자 축소" onclick="text_size_down();">-->
+              <!--<span class="glyphicon glyphicon-minus"></span>-->
+            <!--</button>-->
+            <!--<button type="button" class="btn btn-default" aria-label="글자 확대" onclick="text_size_up();">-->
+              <!--<span class="glyphicon glyphicon-plus"></span>-->
+            <!--</button>-->
+          <!--</div>-->
         </div>
         <div class="text">{{ !data['story'] }}</div>
         <p class="keywords"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
