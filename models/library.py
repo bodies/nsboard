@@ -498,3 +498,43 @@ class Library:
             return True
         except Exception as e:
             raise e
+
+    def likes_dupe_check(self, story_num, ip):
+        try:
+            self.cur.execute(
+                'SELECT count(*) FROM likes WHERE story_num=%s AND ip=INET_ATON(%s)', (story_num, ip)
+            )
+            result = self.cur.fetchone()
+
+            if result[0]:
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("DUPE CHECK ERROR!")
+            raise e
+
+    def likes_add(self, story_num, ip):
+        """
+            1. 테이블 likes에 글번호-IP 등록
+            2. 테이블 stories에 추천 + 1
+            3. (미구현) 테이블 books에 추천 + 1
+        """
+        # TODO: books 테이블도 추천수 + 1
+        try:
+            self.cur.execute(
+                'INSERT INTO likes (story_num, ip) VALUES (%s, INET_ATON(%s))', (story_num, ip)
+            )
+            self.cur.execute(
+                'UPDATE stories SET like_count=like_count+1 WHERE num=%s', (story_num,)
+            )
+        except Exception as e:
+            raise e
+
+    def likes_delete_all(self):
+        # LIKES 테이블을 전체 삭제 (주기적으로)
+        # TODO: 테이블 전체 삭제 구현
+        try:
+            pass
+        except Exception as e:
+            raise e

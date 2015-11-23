@@ -66,10 +66,7 @@ def redirect_to_story(book_num, queue):
 
 @app.route('/s/<story_num:int>')
 def show_story(story_num):
-    """ TODO:
-        1. IP 확인하고, 조회수 올리기
-        2. '다음 화 - 이전 화' 구현 (data['next'], data['prev'])
-    """
+    # TODO: 추천수 표시(?) + 추천 시 반응
     try:
         lib = library.Library()
         data = lib.story(story_num)
@@ -82,19 +79,9 @@ def show_story(story_num):
         return template('popup', msg=str(e))
 
 
-@app.route('/s/<story_num:int>/likes')
-def likes_story(story_num):
-    # 추천
-    # TODO: IP 확인하고, 추천 처리
-    pass
-
-
 @app.route('/new')
 def list_new():
-    """ 새 글 목록
-        TODO:
-        1. 페이지네이션 구현
-    """
+    # 새로 올라온 글 목록
     try:
         this_page = request.query.p
         this_page = int(this_page) if this_page else 1
@@ -140,7 +127,6 @@ def list_keywords():
 @app.route('/k/<keyword>')
 def book_list_by_keyword(keyword):
     # 키워드별 작품 목록
-    # TODO: 일반 게시판 목록처럼 페이지 구분을 해야 함.
     try:
         if not keyword:
             redirect('/keywords')

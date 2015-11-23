@@ -18,6 +18,22 @@ $(function() {
         setFontsize(curSize);
         setCookie("font-size", curSize);
     })
+
+    $("#like_button").click(function() {
+        story_num = $(this).data("story-number");
+        $.ajax({
+            url:"/ajax/like?s=" + story_num,
+            success:function(data) {
+                if (data == "1") {
+                    alert("추천하셨습니다!")
+                } else if (data == "2") {
+                    alert("이미 추천하셨습니다!");
+                } else {
+                    alert("추천 기능을 사용할 수 없습니다.")
+                }
+            }
+        })
+    })
 })
 
 function setFontsize(value) {

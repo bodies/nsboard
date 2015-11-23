@@ -18,8 +18,13 @@
 </div>
 
 
+<div>
+  <button type="button" class="btn btn-default" id="like_button" data-story-number="111">
+    추천
+  </button>
+</div>
 
-<input type="button" id="aaa" value="테스트 시작" />
+
 <input type="button" id="bbb" value="GET!" />
   <div class="text">
     <p>당신은 누구십니까? 남자는 그렇게 물었다</p>

@@ -97,12 +97,13 @@ TABLES.append(('views', q))
 # 추천 여부 확인용
 q = (
     "CREATE TABLE likes ("
-    " story_num mediumint UNSIGNED,"
-    " ip int UNSIGNED NOT NULL,"
-    " PRIMARY KEY (story_num)"
+    " story_num mediumint UNSIGNED NOT NULL,"
+    " ip int UNSIGNED NOT NULL"
     ")"
 )
 TABLES.append(('likes', q))
+
+
 
 
 # ----- MAIN ----- #

@@ -40,6 +40,25 @@ $(function() {
         }
     });
 
+
+    /* 추천 시스템 테스트 */
+    $("#like_button").click(function() {
+        story_num = $(this).data("story-number");
+        $.ajax({
+            url:'./ajax/like?s=' + story_num,
+            success:function(data) {
+                if (data == "1") {
+                    $(".text").append('<p>추천되었습니다!</p>');
+                } else if (data == "2") {
+                    alert("이미 추천하셨습니다!")
+                } else {
+                    alert("잘못된 접근입니다.")
+                }
+
+            }
+        })
+    })
+
 })
 
 function setFontsize(value) {

@@ -182,8 +182,8 @@ def book_info(book_num):
 @app.route('/b/<book_num:int>/write_story')
 @check_auth
 def write_story(book_num):
+    # 글쓰기 폼 출력, 제목과 몇번째 연재인지 상단에 출력
     try:
-        # TODO: 글쓰기 폼 출력, 제목과 몇번째 연재인지 상단에 출력
         lib = library.Library()
         data = lib.book_info(book_num)
         data['queue_num'] = data['story_count'] + 1
@@ -201,11 +201,10 @@ def write_story(book_num):
 @app.route('/b/<book_num:int>/write_story', method='post')
 @check_auth
 def save_story(book_num):
+    # 연재글을 받아서, 정리하고, 저장
+    # 연재 순서는 pub_date로 지정된다.
+    # 혹시 연재 순서를 잘못 올렸을 때는 그 이후 연재글을 다 지우고 새로 입력해야..
     try:
-        # TODO: 연재글을 받아서, 정리하고, 저장
-        # 연재 순서는 pub_date로 지정된다.
-        # 혹시 연재 순서를 잘못 올렸을 때는 그 이후 연재글을 다 지우고 새로 입력해야..
-
         print('SAVE_STORY')
         queue = clean(request.forms.get('queue'))
         print('QUEUE', queue)
