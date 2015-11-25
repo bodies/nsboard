@@ -29,9 +29,9 @@ def ajax_like():
     try:
         if ip and story_num:
             lib = library.Library()
-            if lib.likes_dupe_check(story_num, ip):
+            if lib.like_dupe_check(story_num, ip):
                 return "2"
-            lib.likes_add(story_num, ip)
+            lib.like_add(story_num, ip)
             return "1"
         else:
             return "3"

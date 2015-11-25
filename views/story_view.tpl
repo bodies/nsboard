@@ -44,8 +44,8 @@
             <span class="glyphicon glyphicon-list"></span>&nbsp;목차
           </a>
           &nbsp;
-          <button class="btn btn-warning" role="button" id="like_button" data-story-number="{{ data['num'] }}">
-            <span class="glyphicon glyphicon-heart"></span>&nbsp;추천
+          <button class="btn btn-danger" role="button" id="like_button" data-story-number="{{ data['num'] }}">
+            <span class="glyphicon glyphicon-heart"></span>&nbsp;<span id="like-count">{{ data['like_count'] }}</span>
           </button>
         </div>
         <div class="story-nav clearfix">

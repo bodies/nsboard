@@ -5,12 +5,12 @@
 				<p>작품 정보가 존재하지 않습니다.</p>
 				% else:
         <div>
-          <div class="panel panel-default">
-            <div class="panel-body">
-    				{{ info['intro'] if info['intro'] else '...' }}
-            </div>
-          </div>
-          <p>키워드 |  {{ !', '.join(info['keywords']) }}</p>
+          <p class="book-intro">{{ info['intro'] if info['intro'] else '...' }}</p>
+          <p class="keywords"><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;
+            % for kw in info['keywords']:
+            <a href="/k/{{ kw }}"><span class="label label-default">{{ kw }}</span></a>
+            % end
+          </p>
         </div>
         <div class="buttons">
           <a href="/b/{{ info['num'] }}/1" class="btn btn-success btn-sm" role="button">

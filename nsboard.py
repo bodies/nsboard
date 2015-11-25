@@ -31,7 +31,7 @@ app.mount('/ajax', ajax.app)
 def main():
     try:
         lib = library.Library()
-        new = lib.list_new_preview(1, 8)
+        new = lib.list_story_new_preview(1, 8)
         # hot = lib.list_hot(1, 5)
         title = SITE_NAME + ' - 즐거운 어른 소설 창고'
 
@@ -47,8 +47,8 @@ def show_book(book_num):
     this_page = int(this_page) if this_page else 1
     lib = library.Library()
     info = lib.book_info(book_num)
-    info['keywords'] = _keyword_links(info['keywords'])
-    story_list = lib.story_list(book_num, this_page, PER_PAGE)
+    # info['keywords'] = _keyword_links(info['keywords'])
+    story_list = lib.list_story_by_book(book_num, this_page, PER_PAGE)
     title = info['title'] + ' - ' + SITE_NAME
     return template('book_view', title=title, info=info, list=story_list)
 
@@ -69,10 +69,10 @@ def show_story(story_num):
     # TODO: 추천수 표시(?) + 추천 시 반응
     try:
         lib = library.Library()
-        data = lib.story(story_num)
+        data = lib.story_view(story_num)
         data['story'] = data['story'].replace('\n', '<br />')
         # data['keywords'] = _keyword_links(data['keywords'])
-        lib.add_view_count(story_num)
+        lib.view_count_add(story_num)
         title = data['title'] + ' - ' + SITE_NAME
         return template('story_view', title=title, data=data)
     except Exception as e:
@@ -87,10 +87,10 @@ def list_new():
         this_page = int(this_page) if this_page else 1
 
         lib = library.Library()
-        data = lib.list_new(this_page, PER_PAGE)
+        data = lib.list_story_new(this_page, PER_PAGE)
 
         # 페이지네이션
-        total = lib.story_count_all()
+        total = lib.count_story_all()
         page = _pagination(this_page, total)
         title = '최근 작품 목록' + ' - ' + SITE_NAME
         return template('list_new', title=title, data=data, page=page)
@@ -134,8 +134,8 @@ def book_list_by_keyword(keyword):
         this_page = int(this_page) if this_page else 1
 
         lib = library.Library()
-        data = lib.book_list_keyword(keyword, this_page, PER_PAGE)
-        total = lib.book_count_keyword(keyword)
+        data = lib.list_book_by_keyword(keyword, this_page, PER_PAGE)
+        total = lib.count_book_by_keyword(keyword)
         page = _pagination(this_page, total)
         title = '"' +  keyword + '" 작품 목록' + ' - ' + SITE_NAME
 

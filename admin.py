@@ -83,7 +83,7 @@ def do_logout():
 def show_book_list():
     try:
         lib = library.Library()
-        result = lib.book_list()
+        result = lib.list_book()
         title = '작품 목록 - ' + SITE_NAME
         return template('admin_book_list', title=title, data=result)
     except Exception as e:
@@ -121,12 +121,12 @@ def save_new_book(book_num=None):
         lib = library.Library()
 
         if not book_num:
-            book_num = lib.new_book(title, series, public, complete, keywords, intro)
+            book_num = lib.book_add(title, series, public, complete, keywords, intro)
             if not book_num:
                 raise Exception('새 작품을 등록할 수 없습니다. 잠시 후 다시 시도해주세요.')
             msg = '<{}>이 새 작품으로 등록되었습니다.'.format(title)
         else:
-            lib.modify_book(book_num, title, series, public, complete, keywords, intro)
+            lib.book_edit(book_num, title, series, public, complete, keywords, intro)
             msg = '<{}>의 작품 정보를 수정했습니다.'.format(title)
 
         return template('popup', msg=msg, dest='/a/b/{}'.format(book_num))
@@ -156,7 +156,7 @@ def story_list(book_num):
     try:
         page = request.query.get('p', 1)
         lib = library.Library()
-        data = lib.story_list(book_num, page)
+        data = lib.list_story_by_book(book_num, page)
         book_title = lib.book_name(book_num)
         title = book_title + ' 연재 목록 - ' + SITE_NAME
 
@@ -214,10 +214,10 @@ def save_story(book_num):
         public = 1 if public_raw == 'True' else 0
 
         lib = library.Library()
-        if lib.queue_dupe_check(book_num, queue):
+        if lib.check_dupe_queue(book_num, queue):
             raise Exception('{}회가 이미 존재합니다.'.format(queue))
         print("SAVE_STORY")
-        story_num = lib.new_story(book_num, queue, title, story, public)
+        story_num = lib.story_add(book_num, queue, title, story, public)
 
         print('새로운 글 번호:', story_num)
 
@@ -240,13 +240,13 @@ def update_story(story_num):
         lib = library.Library()
         book_num = lib.book_num(story_num)
 
-        if lib.queue_dupe_check(book_num, queue) and not lib.match_queue_num(story_num, queue):
+        if lib.check_dupe_queue(book_num, queue) and not lib.match_queue_num(story_num, queue):
             # 1. 작품 내 회차가 이미 존재하고,
             # 2. 기존의 회차 번호를 그냥 사용하는 것이 아닐 경우,
             raise Exception('회차 번호가 다른 글과 겹칩니다!')
         else:
             # 회차 번호가 안 겹치거나, 변경하지 않았을 경우
-            lib.modify_story(story_num, queue, title, story, public)
+            lib.story_edit(story_num, queue, title, story, public)
 
         return template('popup', msg='{}을 변경했습니다.'.format(title),
                         dest='/a/s/{}'.format(story_num))
@@ -259,7 +259,7 @@ def update_story(story_num):
 def show_story(story_num):
     try:
         lib = library.Library()
-        data = lib.story(story_num)
+        data = lib.story_view(story_num)
         data['story'] = data['story'].replace('\n', '<br />')
         return template('admin_show_story', title='', data=data)
     except Exception as e:
@@ -271,7 +271,7 @@ def show_story(story_num):
 def modify_story(story_num):
     try:
         lib = library.Library()
-        data = lib.story(story_num)
+        data = lib.story_view(story_num)
         mod = True
         return template('admin_write_story', title='', data=data, mod=mod,
                         action='/a/s/{}/mod'.format(story_num))

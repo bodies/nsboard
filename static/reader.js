@@ -25,7 +25,7 @@ $(function() {
             url:"/ajax/like?s=" + story_num,
             success:function(data) {
                 if (data == "1") {
-                    alert("추천하셨습니다!")
+                    $("#like-count").text(parseInt($("#like-count").text()) + 1);
                 } else if (data == "2") {
                     alert("이미 추천하셨습니다!");
                 } else {

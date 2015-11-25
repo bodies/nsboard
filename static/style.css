@@ -38,6 +38,8 @@ div.text {
 	display:inline;
 }
 
+.glyphicon { top:2px !important; }
+
 
 /* ---------- COMPONENTS ---------- */
 
@@ -134,7 +136,7 @@ nav.pages { text-align:center; }
 
 /* Keywords */
 .btn-keyword { margin-bottom:4px;}
-.label-tag { }
+.label-default { background-color:#999; }
 
 
 /* Table */
@@ -174,6 +176,9 @@ nav.pages { text-align:center; }
 .page-view-book { }
 .page-view-book h3 {
 	letter-spacing:-1px;
+}
+.page-view-book .book-intro {
+    padding:1em 0;
 }
 .page-view-book .story-list { margin:40px 0 10px 0; }
 .page-view-book .story-list .story-list-header {
