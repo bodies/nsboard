@@ -30,4 +30,12 @@
     <p>당신은 누구십니까? 남자는 그렇게 물었다</p>
   </div>
 
+
+<div>
+  % for k in header:
+  <p>{{ k }}: {{ header[k] }}</p>
+  % end
+</div>
+
+
 % include('footer.tpl')

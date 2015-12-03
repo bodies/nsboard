@@ -156,7 +156,9 @@ def error404(error):
 
 @app.route('/test')
 def test():
-    return template('test', title="AJAX TEST")
+    header = request.headers
+
+    return template('test', title="AJAX TEST", header=header)
 
 
 # -----  END OF ROUTING ----- #

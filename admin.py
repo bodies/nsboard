@@ -27,7 +27,7 @@ def check_auth(func):
     # 인자로 주어진 함수에서 예외가 발생하면 여기 걸린다!
     # 로그인 여부를 예외로 처리하지 말 것!
     def checker(*args, **kwargs):
-        return func(*args, **kwargs)  # 디버깅용
+        # return func(*args, **kwargs)  # 디버깅용
 
         s = request.environ.get('beaker.session')
         if 'remote_addr' in s and s['remote_addr'] == request.environ.get('REMOTE_ADDR'):
